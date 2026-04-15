@@ -1,5 +1,3 @@
-
-
 Hello Thank you for trying d77void.
 
 ## Installers
