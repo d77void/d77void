@@ -92,7 +92,7 @@ input type:keyboard {
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Wallpaper/background1.png fill
+output * bg ~/Wallpaper/background3.png fill
 
 #
 # Example configuration:
@@ -307,24 +307,23 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    swaybar_command waybar
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 #    position top
-#    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command ~/.config/sway/status.sh #while date +'%Y-%m-%d %X'; do sleep 1; done
 #
-#  colors {
-#    background         $base
-#    statusline         $text
-#    focused_statusline $text
-#    focused_separator  $base
-#
-#    # target           border bg        text
-#    focused_workspace  $base  $mauve    $crust
-#    active_workspace   $base  $surface2 $text
-#    inactive_workspace $base  $base     $text
-#    urgent_workspace   $base  $red      $crust
-#  }
+  colors {
+    background         $base
+    statusline         $text
+    focused_statusline $text
+    focused_separator  $base
+
+    # target           border bg        text
+    focused_workspace  $base  $mauve    $crust
+    active_workspace   $base  $surface2 $text
+    inactive_workspace $base  $base     $text
+    urgent_workspace   $base  $red      $crust
+  }
 }
 
 include /etc/sway/config.d/*
