@@ -19,7 +19,7 @@ license="MIT"
 homepage="https://github.com/dani-77/pwm"
 #changelog=""
 distfiles=""https://github.com/dani-77/${pkgname}/archive/refs/tags/${version}.tar.gz
-checksum=3d17f63b1df86011eb1c150e9fdadb09d235ebcb8a9aa7fa1faee23283ac5773
+checksum=806f8f182a36364bdf393217e9c4c3eabcd04d076bfc257a745314cfab2b1f04
 repository=d77
 
 do_build() {
