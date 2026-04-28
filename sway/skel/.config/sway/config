@@ -70,16 +70,10 @@ for_window [window_role="dialog"] floating enable
 exec wlsunset -g 0.8 -l 41.6 -L -8.62 &
 
 ### Automount
-exec udiskie -at &
+exec udiskie -a &
 
 ### Start SwayNotificationCenter
 exec swaync &
-
-### Start nm
-exec nm-applet
-
-### Start octo-notifier
-exec octoxbps-notifier &
 
 # Keyboard layout
 input type:keyboard {

@@ -538,9 +538,8 @@ build_variant() {
         ;;
 	sway)
 	    COMMON=yes
-	    WAY=yes
 	    FUZZEL=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty qt5-wayland qt6-wayland sway swaybg swayidle swayimg swaylock wmenu"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	wayfire)
