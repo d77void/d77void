@@ -1,6 +1,6 @@
 # Template file for 'mullvad-browser'
 pkgname=mullvad-browser
-version=15.0.7
+version=15.0.11
 revision=1
 #archs="i686 x86_64"
 #build_wrksrc=
@@ -19,7 +19,7 @@ license="GPL-3.0-or-later"
 homepage="https://mullvad.net"
 changelog="https://github.com/mullvad/${pkgname}/releases/tag/${version}"
 distfiles="https://github.com/mullvad/mullvad-browser/releases/download/${version}/${pkgname}_${version}-1_amd64.deb"
-checksum=f14c0a3eae5204fee9ae21e26397845bc9a3ebf6cc69120d09a3662187f0f9fb
+checksum=f5fc189c047374e4760a6696fa8b2715f534eff20ab6a8ab4a3d049ae0587126
 repository=d77
 
 do_install() {
