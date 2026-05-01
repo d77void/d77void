@@ -7,6 +7,6 @@ remove the niri-session, as that's a systemd-only binary. replace with niri --se
  Name=Niri
  Comment=A scrollable-tiling Wayland compositor
 -Exec=niri-session
-+Exec=/usr/bin/niri -- -session
++Exec=dbus-launch /usr/bin/niri -- -session
  Type=Application
  DesktopNames=niri
