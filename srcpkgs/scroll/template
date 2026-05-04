@@ -1,12 +1,15 @@
 # Template file for 'scroll'
 pkgname=scroll
-version=1.11.8
+version=1.12.11
 revision=1
 build_style=meson
 configure_args="-Dwerror=false -Db_ndebug=false"
 conf_files="/etc/scroll/config"
-hostmakedepends="pkg-config wayland-devel scdoc"
-makedepends="wlroots0.19-devel pcre2-devel json-c-devel pango-devel cairo-devel
+hostmakedepends="pkg-config wayland-devel glslang hwids lcms2-devel libgbm-devel libglvnd-devel libseat-devel eudev-libudev-devel
+ libdrm-devel libinput-devel libxkbcommon-devel pixman-devel wayland-devel
+ wayland-protocols vulkan-loader-devel xcb-util-errors-devel
+ xcb-util-wm-devel xcb-util-renderutil-devel libdisplay-info-devel libliftoff-devel scdoc"
+makedepends="pcre2-devel json-c-devel pango-devel cairo-devel
  gdk-pixbuf-devel libevdev-devel lua54-devel"
 depends="libcap-progs swaybg xorg-server-xwayland libxkbcommon>=1.5.0_1 lua54"
 short_desc="I3-compatible Wayland compositor with a PaperWM layout"
@@ -15,7 +18,7 @@ license="MIT"
 homepage="https://github.com/dawsers/scroll"
 changelog="https://github.com/dawsers/scroll/releases"
 distfiles="https://github.com/dawsers/scroll/archive/refs/tags/${version}.tar.gz"
-checksum=d44cfac63c67546c0651dd637902fb294144611ab7dfcf82ac550dd6696049f3
+checksum=0f83e355c23016f20c150278ee291ed8016322c4ae992c3b52cd54e0121353ab
 repository=d77
 
 post_install() {
