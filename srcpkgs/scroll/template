@@ -1,6 +1,6 @@
 # Template file for 'scroll'
 pkgname=scroll
-version=1.11.3
+version=1.11.8
 revision=1
 build_style=meson
 configure_args="-Dwerror=false -Db_ndebug=false"
@@ -10,12 +10,12 @@ makedepends="wlroots0.19-devel pcre2-devel json-c-devel pango-devel cairo-devel
  gdk-pixbuf-devel libevdev-devel lua54-devel"
 depends="libcap-progs swaybg xorg-server-xwayland libxkbcommon>=1.5.0_1 lua54"
 short_desc="I3-compatible Wayland compositor with a PaperWM layout"
-maintainer="Brihadeesh S <brihadeesh@protonmail.com>"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://github.com/dawsers/scroll"
 changelog="https://github.com/dawsers/scroll/releases"
 distfiles="https://github.com/dawsers/scroll/archive/refs/tags/${version}.tar.gz"
-checksum=d9a9182d3168eca06ab8a9096b32b6f5fc9fc1aa44a30dd97ed5e3a13dd23d48
+checksum=d44cfac63c67546c0651dd637902fb294144611ab7dfcf82ac550dd6696049f3
 repository=d77
 
 post_install() {
