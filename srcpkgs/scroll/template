@@ -1,7 +1,7 @@
 # Template file for 'scroll'
 pkgname=scroll
 version=1.12.11
-revision=1
+revision=2
 build_style=meson
 configure_args="-Dwerror=false -Db_ndebug=false"
 conf_files="/etc/scroll/config"
@@ -20,6 +20,10 @@ changelog="https://github.com/dawsers/scroll/releases"
 distfiles="https://github.com/dawsers/scroll/archive/refs/tags/${version}.tar.gz"
 checksum=0f83e355c23016f20c150278ee291ed8016322c4ae992c3b52cd54e0121353ab
 repository=d77
+
+pre_install() {
+	sed -i 's|Exec=scroll|Exec=dbus-launch scroll|' scroll.desktop
+}
 
 post_install() {
 	vlicense LICENSE
