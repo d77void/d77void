@@ -1,5 +1,5 @@
-# Template file for 'wayle'
-pkgname=wayle
+# Template file for 'wayle-settings'
+pkgname=wayle-settings
 version=0.2.3
 revision=1
 #archs="i686 x86_64"
@@ -18,18 +18,20 @@ maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://wayle.app"
 changelog="https://github.com/wayle-rs/wayle/releases"
-distfiles="https://github.com/wayle-rs/${pkgname}/archive/refs/tags/v${version}.tar.gz"
+distfiles="https://github.com/wayle-rs/wayle/archive/refs/tags/v${version}.tar.gz"
 checksum=edc80d7ca74f1de3ccc99305834f01e87daabebceda5e64635578ce1323b2fa8
 repository=d77
 
 
 do_build() {
-	cargo install --path wayle	
+	cargo install --path crates/wayle-settings
 }
 
 do_install() {
 	vmkdir /usr/bin
-	vcopy  target/release/wayle /usr/bin
-    	vmkdir /usr/share/wayle/icons
-    	vcopy  resources/icons/hicolor /usr/share/wayle/icons/
+	vcopy  target/release/wayle-settings /usr/bin
+    	vmkdir /usr/share/applications
+    	vcopy  resources/com.wayle.settings.desktop /usr/share/applications
+	vmkdir /usr/share/icons/hicolor/scalable/apps
+	vcopy  resources/wayle-settings.svg /usr/share/icons/hicolor/scalable/apps
 }
