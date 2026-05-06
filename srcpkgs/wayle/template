@@ -1,7 +1,7 @@
 # Template file for 'wayle'
 pkgname=wayle
 version=0.2.3
-revision=1
+revision=2
 #archs="i686 x86_64"
 #build_wrksrc=
 build_style=cargo
@@ -25,11 +25,29 @@ repository=d77
 
 do_build() {
 	cargo install --path wayle	
+	cargo install --path crates/wayle-settings
 }
 
 do_install() {
 	vmkdir /usr/bin
-	vcopy  target/release/wayle /usr/bin
-    	vmkdir /usr/share/wayle/icons
-    	vcopy  resources/icons/hicolor /usr/share/wayle/icons/
+	vcopy  target/release/${pkgname} /usr/bin
+	vcopy  target/release/${pkgname}-settings /usr/bin
+
+    	vmkdir /usr/share/${pkgname}/icons
+    	vcopy  resources/icons/hicolor /usr/share/${pkgname}/icons/
+
+        vmkdir /usr/share/icons/hicolor/scalable/apps
+        vcopy  resources/wayle-settings.svg /usr/share/icons/hicolor/scalable/apps
+
+	vmkdir /usr/share/applications
+        vcopy  resources/com.wayle.settings.desktop /usr/share/applications
+	vmkdir /usr/share/licenses/${pkgname}
+	vcopy  LICENSE /usr/share/licenses/${pkgname}
+	
+	vmkdir /usr/share/bash-completion/completions/
+	vcopy  ${FILESDIR}/completions.bash /usr/share/bash-completion/completions/
+	vmkdir /usr/share/zsh/site-functions/
+	vcopy  ${FILESDIR}/_wayle /usr/share/zsh/site-functions/
+	vmkdir /usr/share/fish/vendor_completions.d
+	vcopy  ${FILESDIR}/wayle.fish /usr/share/fish/vendor_completions.d
 }
