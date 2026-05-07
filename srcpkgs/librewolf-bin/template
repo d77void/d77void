@@ -10,13 +10,13 @@ short_desc="Firefox fork focused on privacy, security and freedom (precompiled)"
 maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="MPL-2.0"
 homepage="https://codeberg.org/librewolf"
-distfiles="https://dl.librewolf.net/librewolf/150.0-1/librewolf-150.0-1-linux-x86_64-deb.deb"
+distfiles="https://dl.librewolf.net/librewolf/150.0.1-1/librewolf-150.0.1-1-linux-x86_64-deb.deb"
 conflicts="librewolf"
-checksum=3e1b65a89f3551829a13a20725af3f57b1951a07c901cf466b1817a9acb71ad6
+checksum=640ed237058cfc26d9fa3078e5845b93e7c484b7154605a9984747848f867b11
 repository=d77
 
 do_install() {
-	vextract -C ${DESTDIR} librewolf-150.0-1-linux-x86_64-deb.deb
+	vextract -C ${DESTDIR} librewolf-150.0.1-1-linux-x86_64-deb.deb
 	# xbps-src doesn't allow ELF files in /usr/share
 	mv ${DESTDIR}/usr/share/${_pkgname} ${DESTDIR}/usr/lib
 	# recreate symlink
