@@ -1,7 +1,7 @@
 # Template file for 'wayle'
 pkgname=wayle
 version=0.2.3
-revision=2
+revision=3
 #archs="i686 x86_64"
 #build_wrksrc=
 build_style=cargo
@@ -12,7 +12,7 @@ build_style=cargo
 #make_dirs="/var/log/dir 0755 root root"
 hostmakedepends="cargo clang cmake gcc git pkg-config"
 makedepends="gtk4-devel gtk4-layer-shell-devel gtksourceview5-devel pulseaudio-devel fftw-devel pipewire-devel eudev-libudev-devel"
-depends="cava glibc procs"
+depends="cava glibc procs pulseaudio upower bluez"
 short_desc="Wayland desktop shell written in Rust with GTK4 and Relm4."
 maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="MIT"
@@ -45,9 +45,9 @@ do_install() {
 	vcopy  LICENSE /usr/share/licenses/${pkgname}
 	
 	vmkdir /usr/share/bash-completion/completions/
-	vcopy  ${FILESDIR}/completions.bash /usr/share/bash-completion/completions/
+	vcopy  ${FILESDIR}/completions.bash /usr/share/bash-completion/completions/${pkgname}
 	vmkdir /usr/share/zsh/site-functions/
 	vcopy  ${FILESDIR}/_wayle /usr/share/zsh/site-functions/
 	vmkdir /usr/share/fish/vendor_completions.d
-	vcopy  ${FILESDIR}/wayle.fish /usr/share/fish/vendor_completions.d
+	vcopy  ${FILESDIR}/wayle.fish /usr/share/fish/vendor_completions.d/
 }
