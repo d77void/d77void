@@ -84,6 +84,7 @@ usage() {
 	 -b <system-pkg>    Set an alternative base package (default: base-system)
 	 -r <repo>          Use this XBPS repository. May be specified multiple times
 	 -c <cachedir>      Use this XBPS cache directory (default: ./xbps-cachedir-<arch>)
+	 -H <host_cachedir> Use this Host XBPS cache directory (default: ./xbps-cachedir-<host_arch>)
 	 -k <keymap>        Default keymap to use (default: us)
 	 -l <locale>        Default locale to use (default: en_US.UTF-8)
 	 -i <lz4|gzip|bzip2|xz>
@@ -102,6 +103,8 @@ usage() {
 	 -T <title>         Modify the bootloader title (default: Void Linux)
 	 -v linux<version>  Install a custom Linux version on ISO image (default: linux metapackage).
 	                    Also accepts linux metapackages (linux-mainline, linux-lts).
+	 -x <script>        Path to a postsetup script to run before generating the initramfs
+                            (receives the path to the ROOTFS as an argument)
 	 -K                 Do not remove builddir
 	 -h                 Show this help and exit
 	 -V                 Show version and exit
@@ -216,7 +219,8 @@ generate_initramfs() {
 
     copy_dracut_files "$ROOTFS"
     copy_autoinstaller_files "$ROOTFS"
-    chroot "$ROOTFS" env -i /usr/bin/dracut -N --"${INITRAMFS_COMPRESSION}" \
+    chroot "$ROOTFS" env -i PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin" \
+        /usr/bin/dracut -N --"${INITRAMFS_COMPRESSION}" \
         --add-drivers "ahci" --force-add "vmklive autoinstaller" --omit systemd "/boot/initrd" $KERNELVERSION
     [ $? -ne 0 ] && die "Failed to generate the initramfs"
 
@@ -498,12 +502,13 @@ generate_iso_image() {
 #
 # main()
 #
-while getopts "a:b:r:c:C:T:Kk:l:i:I:S:e:s:o:p:g:v:P:Vh" opt; do
+while getopts "a:b:r:H:c:C:T:Kk:l:i:I:S:e:s:o:p:g:v:P:x:Vh" opt; do
 	case $opt in
 		a) TARGET_ARCH="$OPTARG";;
 		b) BASE_SYSTEM_PKG="$OPTARG";;
 		r) XBPS_REPOSITORY="--repository=$OPTARG $XBPS_REPOSITORY";;
 		c) XBPS_CACHEDIR="$OPTARG";;
+		H) XBPS_HOST_CACHEDIR="$OPTARG";;
 		g) IGNORE_PKGS+=($OPTARG) ;;
 		K) readonly KEEP_BUILDDIR=1;;
 		k) KEYMAP="$OPTARG";;
@@ -519,6 +524,7 @@ while getopts "a:b:r:c:C:T:Kk:l:i:I:S:e:s:o:p:g:v:P:Vh" opt; do
 		C) BOOT_CMDLINE="$OPTARG";;
 		T) BOOT_TITLE="$OPTARG";;
 		v) LINUX_VERSION="$OPTARG";;
+		x) POSTSETUP_SCRIPT="$OPTARG";;
 		V) version; exit 0;;
 		h) usage; exit 0;;
 		*) usage >&2; exit 1;;
@@ -600,6 +606,7 @@ STEP_COUNT=10
 [ "${#INCLUDE_DIRS[@]}" -gt 0 ] && STEP_COUNT=$((STEP_COUNT+1))
 [ "${#IGNORE_PKGS[@]}" -gt 0 ] && STEP_COUNT=$((STEP_COUNT+1))
 [ -n "$ROOT_SHELL" ] && STEP_COUNT=$((STEP_COUNT+1))
+[ -n "$POSTSETUP_SCRIPT" ] && STEP_COUNT=$((STEP_COUNT+1))
 
 : ${SYSLINUX_DATADIR:="$VOIDTARGETDIR"/usr/lib/syslinux}
 : ${GRUB_DATADIR:="$VOIDTARGETDIR"/usr/share/grub}
@@ -693,6 +700,15 @@ if [ "${#INCLUDE_DIRS[@]}" -gt 0 ];then
     copy_include_directories
 fi
 
+if [ -n "$POSTSETUP_SCRIPT" ]; then
+    print_step "Running postsetup script: $POSTSETUP_SCRIPT ..."
+    if [ -f "$POSTSETUP_SCRIPT" ] && [ -x "$POSTSETUP_SCRIPT" ]; then
+        "$POSTSETUP_SCRIPT" "$ROOTFS" || die "Postsetup script failed"
+    else
+        die "Postsetup script not found or not executable: $POSTSETUP_SCRIPT"
+    fi
+fi
+
 print_step "Generating initramfs image ($INITRAMFS_COMPRESSION)..."
 generate_initramfs
 
@@ -713,5 +729,6 @@ generate_squashfs
 print_step "Generating ISO image..."
 generate_iso_image
 
-hsize=$(du -sh "$OUTPUT_FILE"|awk '{print $1}')
+sync
+hsize=$(stat -c '%s' "$OUTPUT_FILE" | numfmt --to=iec)
 info_msg "Created $(readlink -f "$OUTPUT_FILE") ($hsize) successfully."

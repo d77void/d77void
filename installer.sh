@@ -45,7 +45,7 @@ MIRROR_DONE=
 
 TARGETDIR=/mnt/target
 LOG=/dev/tty8
-CONF_FILE=/tmp/.void-installer.conf
+CONF_FILE=/tmp/.d77void-installer.conf
 if [ ! -f $CONF_FILE ]; then
     touch -f $CONF_FILE
 fi
@@ -97,7 +97,7 @@ WIDGET_SIZE="10 70"
 DIALOG() {
     rm -f $ANSWER
     dialog --colors --keep-tite --no-shadow --no-mouse \
-        --backtitle "${BOLD}${WHITE}d77void Linux installation -- https://d77void.sourceforge.io (0.26 97416b7)${RESET}" \
+        --backtitle "${BOLD}${WHITE}d77Void Linux installation -- https://d77void.sourceforge.io (@@MKLIVE_VERSION@@)${RESET}" \
         --cancel-label "Back" --aspect 20 "$@" 2>$ANSWER
     return $?
 }
@@ -105,7 +105,7 @@ DIALOG() {
 INFOBOX() {
     # Note: dialog --infobox and --keep-tite don't work together
     dialog --colors --no-shadow --no-mouse \
-        --backtitle "${BOLD}${WHITE}d77void Linux installation -- https://d77void.sourceforge.io (0.26 97416b7)${RESET}" \
+        --backtitle "${BOLD}${WHITE}d77Void Linux installation -- https://d77void.sourceforge.io (@@MKLIVE_VERSION@@)${RESET}" \
         --title "${TITLE}" --aspect 20 --infobox "$@"
 }
 
@@ -192,7 +192,7 @@ iso639_language() {
     oc)  echo "Occitan" ;;
     om)  echo "Oromo" ;;
     pl)  echo "Polish" ;;
-    pt)  echo "Portugese" ;;
+    pt)  echo "Portuguese" ;;
     ro)  echo "Romanian" ;;
     ru)  echo "Russian" ;;
     sk)  echo "Slovak" ;;
@@ -226,7 +226,7 @@ iso3166_country() {
     AR) echo "Argentina" ;;
     AT) echo "Austria" ;;
     AU) echo "Australia" ;;
-    BA) echo "Bonsia and Herzegovina" ;;
+    BA) echo "Bosnia and Herzegovina" ;;
     BE) echo "Belgium" ;;
     BG) echo "Bulgaria" ;;
     BH) echo "Bahrain" ;;
@@ -707,7 +707,7 @@ menu_useraccount() {
 
     while true; do
         _preset=$(get_option USERNAME)
-        [ -z "$_preset" ] && _preset="Void User"
+        [ -z "$_preset" ] && _preset="d77Void User"
         DIALOG --inputbox "Enter a display name for login '$(get_option USERLOGIN)' :" \
             ${INPUTSIZE} "$_preset"
         if [ $? -eq 0 ]; then
@@ -821,7 +821,7 @@ set_bootloader() {
 
     # Check if it's an EFI system via efivars module.
     if [ -n "$EFI_SYSTEM" ]; then
-        grub_args="--target=$EFI_TARGET --efi-directory=/boot/efi --bootloader-id=void_grub --recheck"
+        grub_args="--target=$EFI_TARGET --efi-directory=/boot/efi --bootloader-id=d77void_grub --recheck"
     fi
     echo "Running grub-install $grub_args $dev..." >$LOG
     chroot $TARGETDIR grub-install $grub_args $dev >$LOG 2>&1
@@ -863,7 +863,7 @@ test_network() {
 configure_wifi() {
     local dev="$1" ssid enc pass _wpasupconf=/etc/wpa_supplicant/wpa_supplicant.conf
 
-    DIALOG --form "Wireless configuration for ${dev}\n(encryption type: wep or wpa)" 0 0 0 \
+    DIALOG --form "Wireless configuration for ${dev}\n(encryption type: wep, wpa, or sae)" 0 0 0 \
         "SSID:" 1 1 "" 1 16 30 0 \
         "Encryption:" 2 1 "" 2 16 4 3 \
         "Password:" 3 1 "" 3 16 63 0 || return 1
@@ -873,8 +873,8 @@ configure_wifi() {
     if [ -z "$ssid" ]; then
         DIALOG --msgbox "Invalid SSID." ${MSGBOXSIZE}
         return 1
-    elif [ -z "$enc" -o "$enc" != "wep" -a "$enc" != "wpa" ]; then
-        DIALOG --msgbox "Invalid encryption type (possible values: wep or wpa)." ${MSGBOXSIZE}
+    elif [ -z "$enc" ] || [[ "$enc" != "wep" && "$enc" != "wpa" && "$enc" != "sae" ]]; then
+        DIALOG --msgbox "Invalid encryption type (possible values: wep, wpa, or sae)." ${MSGBOXSIZE}
         return 1
     elif [ -z "$pass" ]; then
         DIALOG --msgbox "Invalid AP password." ${MSGBOXSIZE}
@@ -894,6 +894,15 @@ network={
   wep_key0="$pass"
   wep_tx_keyidx=0
   auth_alg=SHARED
+}
+EOF
+    elif [ "$enc" = "sae" ]; then
+        cat << EOF >> ${_wpasupconf}
+network={
+    ssid="$ssid"
+    key_mgmt=SAE
+    sae_password="$pass"
+    ieee80211w=2
 }
 EOF
     else
@@ -1066,6 +1075,9 @@ as FAT32, mountpoint /boot/efi and at least with 100MB of size." ${MSGBOXSIZE}
 
 create_filesystems() {
     local mnts dev mntpt fstype fspassno mkfs size rv uuid
+
+    # truncate to avoid doubling up
+    : >"$TARGET_FSTAB"
 
     mnts=$(grep -E '^MOUNTPOINT .*' $CONF_FILE | sort -k 5)
     set -- ${mnts}
@@ -1346,6 +1358,12 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
     # Create and mount filesystems
     create_filesystems
 
+    if ! find "$TARGETDIR" -xdev -mindepth 1 -maxdepth 1 -not -name 'lost+found' | read; then
+        DIALOG --msgbox "${BOLD}${RED}ERROR:${RESET} \
+Root partition not empty! Aborting..." ${MSGBOXSIZE}
+        DIE 1
+    fi
+
     SOURCE_DONE="$(get_option SOURCE)"
     # If source not set use defaults.
     if [ "$(get_option SOURCE)" = "local" -o -z "$SOURCE_DONE" ]; then
@@ -1474,7 +1492,7 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
     umount_filesystems
 
     # installed successfully.
-    DIALOG --yesno "${BOLD}d77oid  has been installed successfully!${RESET}\n
+    DIALOG --yesno "${BOLD}d77Void Linux has been installed successfully!${RESET}\n
 Do you want to reboot the system?" ${YESNOSIZE}
     if [ $? -eq 0 ]; then
         shutdown -r now
@@ -1518,7 +1536,7 @@ menu() {
         AFTER_HOSTNAME="Timezone"
         DIALOG --default-item $DEFITEM \
             --extra-button --extra-label "Settings" \
-            --title " d77void installation menu " \
+            --title " d77Void Linux installation menu " \
             --menu "$MENULABEL" 10 70 0 \
             "Keyboard" "Set system keyboard" \
             "Network" "Set up the network" \
@@ -1537,7 +1555,7 @@ menu() {
         AFTER_HOSTNAME="Locale"
         DIALOG --default-item $DEFITEM \
             --extra-button --extra-label "Settings" \
-            --title " d77void installation menu " \
+            --title " d77Void Linux installation menu " \
             --menu "$MENULABEL" 10 70 0 \
             "Keyboard" "Set system keyboard" \
             "Network" "Set up the network" \

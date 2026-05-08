@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma qtile river sway wayfire wmd77 xfce"
+IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qtile river scroll sway wayfire wmd77 xfce"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -22,7 +22,7 @@ usage() {
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
-	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome, herbstluftwm, hyprland, i3wm, JWM, labwc, leftwm, mango, niri, openbox, plasma, qtile, river, sway, wayfire, wmd77 or xfce. 
+	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome, herbstluftwm, hyprland, i3wm, JWM, labwc, leftwm, mango, niri, openbox, plasma, pwm, qtile, river, scroll, sway, wayfire, wmd77 or xfce. 
                May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -520,6 +520,12 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES ark kde5 kde5-baseapps kmail librewolf-bin qt5-graphicaleffects sddm yakuake"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
+	pwm)
+	    COMMON=yes
+            X11=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-iosevka fresh-editor gettext git gmrun htop inxi joshuto kvantum mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi sddm smartmontools sxhkd system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+        ;;
 	qtile)
 	    COMMON=yes
 	    X11=yes
@@ -534,6 +540,12 @@ build_variant() {
 	    WAY=yes
 	    FUZZEL=yes
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty qt5-wayland qt6-wayland river river-bedload river-shifttags swaybg swayidle swayimg swaylock"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+        ;;
+	scroll)
+	    COMMON=yes
+	    FUZZEL=yes
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim hyprlock ImageMagick kitty nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland scroll swaybg swayidle swayimg SwayNotificationCenter wayle wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	sway)

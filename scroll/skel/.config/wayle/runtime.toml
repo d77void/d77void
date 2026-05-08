@@ -1,0 +1,57 @@
+[general]
+font-sans = "Hack"
+font-mono = "Hack"
+
+[[bar.layout]]
+monitor = "*"
+show = true
+left = ["dashboard"]
+center = [
+    "clock",
+    "weather",
+]
+right = [
+    "cpu",
+    "ram",
+    "battery",
+    "volume",
+    "network",
+]
+
+[styling.palette]
+bg = "#282a36"
+surface = "#343746"
+elevated = "#44475a"
+fg = "#f8f8f2"
+fg-muted = "#6272a4"
+primary = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+green = "#50fa7b"
+blue = "#8be9fd"
+
+[modules.battery]
+border-show = true
+
+[modules.clock]
+border-show = true
+
+[modules.cpu]
+border-show = true
+
+[modules.dashboard]
+border-show = true
+
+[modules.network]
+border-show = true
+
+[modules.ram]
+border-show = true
+
+[modules.volume]
+border-show = true
+
+[modules.weather]
+location = "Porto"
+border-show = true
+

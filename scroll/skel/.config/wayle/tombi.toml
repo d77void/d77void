@@ -1,0 +1,10 @@
+[schema]
+enabled = true
+
+[[schemas]]
+path = "./schema.json"
+include = ["config.toml", "runtime.toml"]
+
+[[schemas]]
+path = "./themes/schema.json"
+include = ["themes/*.toml"]

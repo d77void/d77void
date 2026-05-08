@@ -1,0 +1,76 @@
+-- Conky, a system monitor https://github.com/brndnmtthws/conky
+--
+-- This configuration file is Lua code. You can write code in here, and it will
+-- execute when Conky loads. You can use it to generate your own advanced
+-- configurations.
+--
+-- Try this (remove the `--`):
+--
+--   print("Loading Conky config")
+--
+-- For more on Lua, see:
+-- https://www.lua.org/pil/contents.html
+--
+-- Conky Lua API: https://conky.cc/lua
+
+-- Configuration settings: https://conky.cc/config_settings
+conky.config = {
+    alignment = 'bottom_right',
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'iosevka:size=8',
+    gap_x = 60,
+    gap_y = 60,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_wayland = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = Conky,
+    own_window_type = 'override',
+    own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+    own_window_argb_visual = true,
+    own_window_argb_value = 0,
+}
+
+-- Variables: https://conky.cc/variables
+conky.text = [[
+${font iosevka:size=10}${color green}${offset 5}Keybinds 
+$color${hr}
+${font}
+${color grey}super + return -> ${color}terminal
+${color grey}super + a -> ${color}rofi
+${color grey}super + b -> ${color}swap wallpaper
+${color grey}super + d -> ${color}dmenu
+${color grey}super + j/k -> ${color}swap focused window 
+${color grey}super + shift + j/k -> ${color}swap window position
+${color grey}super + m -> ${color}change layout
+${color grey}super + p -> ${color}print screen
+${color grey}super + q -> ${color}kill focused window
+${color grey}super + r -> ${color}gmrun
+${color grey}super + s -> ${color}scratchpad
+${color grey}super + t -> ${color}lock
+${color grey}super + x -> ${color}powermenu
+]]

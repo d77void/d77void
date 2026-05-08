@@ -1,0 +1,10 @@
+super + a
+	rofi -show drun
+super + b
+	wswap-X
+super + p
+	scrot
+super + r
+	gmrun
+super + t
+	slock
