@@ -50,7 +50,7 @@ print_step() {
 mount_pseudofs() {
     for f in sys dev proc; do
         mkdir -p "$ROOTFS"/$f
-        mount --rbind /$f "$ROOTFS"/$f
+        mount --rbind /$f "$ROOTFS"/$f --make-rslave
     done
 }
 

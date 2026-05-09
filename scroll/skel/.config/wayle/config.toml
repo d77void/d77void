@@ -1,6 +1,6 @@
 # Wayle configuration file
 [modules.dashboard]
-dropdown-lock-command = "hyprlock"
+dropdown-lock-command = "swaylock"
 dropdown-logout-command = "loginctl terminate-session $XDG_SESSION_ID"
 dropdown-reboot-command = "loginctl reboot"
 dropdown-poweroff-command = "loginctl poweroff"
