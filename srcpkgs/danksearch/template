@@ -1,0 +1,35 @@
+# Template file for 'danksearch'
+pkgname=danksearch
+version=0.2.1
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style=gnu-makefile
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="go"
+makedepends=""
+depends=""
+short_desc="Fast, configurable filesystem search with fuzzy matching"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://danklinux.com"
+#changelog=""
+distfiles="https://github.com/AvengeMedia/danksearch/archive/refs/tags/v0.2.1.tar.gz"
+checksum=e2c263a233e45661e55bd841ee1395b9241132091f1b1e3d98caebb26d455727
+repository=d77
+
+do_install() {
+	vmkdir /etc/sv/dsearch
+	echo '#!/bin/sh' > ${DESTDIR}/etc/sv/dsearch/run
+	echo 'exec 2>&1' >> ${DESTDIR}/etc/sv/dsearch/run
+	echo 'sv check dbus > /dev/null || exit 1' >> ${DESTDIR}/etc/sv/dsearch/run
+	echo 'exec /usr/bin/dsearch serve' >> ${DESTDIR}/etc/sv/dsearch/run
+	chmod 755 ${DESTDIR}/etc/sv/dsearch/run
+
+	vmkdir /usr/bin
+	vcopy bin/dsearch /usr/bin
+}
