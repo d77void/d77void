@@ -42,7 +42,7 @@ riverctl map normal Super+Shift F spawn pcmanfm
 
 # d77 window rules
 riverctl rule-add -app-id 'gmrun' float
-riverctl rule-add -app-id 'octoxbps' float
+riverctl rule-add -app-id 'qt-sudo' float
 riverctl rule-add -app-id 'pavucontrol' float
 
 # Scratchpad
