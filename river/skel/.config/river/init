@@ -30,11 +30,11 @@ riverctl spawn "wlsunset -g 0.8 -l 41.6 -L -8.62"
 riverctl spawn "screenlock"
 
 # d77 keybinds
-riverctl map normal Super D spawn fuzzel
+riverctl map normal Super A spawn fuzzel
 riverctl map normal Super M spawn geary
 riverctl map normal Super N spawn nwggrid
-riverctl map normal Super O spawn gmrun
 riverctl map normal Super P spawn grim
+riverctl map normal Super R spawn gmrun
 riverctl map normal Super T spawn swaylock
 riverctl map normal Super W spawn brave-browser-stable
 riverctl map normal Super X spawn fuzzel-power-menu

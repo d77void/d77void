@@ -4,13 +4,26 @@ Thank you for trying d77void RiverWM edition.
 
 ## Installer
 
-To install use Calamares from the menu.
-
-In case it won't start, open a terminal and type:
+To install with Calamares:
 
 ```
-sudo -E calamares
+su
+
+calamares
 ```
+
+To run the tui installer just open a terminal and type:
+
+```
+sudo d77void-installer
+```
+
+Note: 
+
+To maintain the configuration of the live iso, during install, choose local instead of network install.
+
+During install, add your user to the storage group. That way udiskie will automount disks.
+
 
 ## Keybinds
 
@@ -20,13 +33,13 @@ super + shift + e -> logout
 
 super + q -> close window
 
-super + d -> menu1
+super + a -> menu1
 
 super + m -> mail
 
 super + n -> menu2
 
-super + o -> gmrun
+super + r -> gmrun
 
 super + t -> lock
 
