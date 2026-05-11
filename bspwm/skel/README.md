@@ -1,16 +1,14 @@
-# Hello,
+## Hello
 
-thank you for trying d77void bspwm edition.
+Thank you for trying d77void.
 
-## Install
+To install use Calamares from the menu.
 
-To perform the system installation you can:
+In case it won't start, open a terminal and type:
 
--  use the tui d77void-installer from the terminal
-
-- or the graphical Calamares
-
-Just in case you use the tui, don't forget to add your user to the storage group.
+```
+sudo -E calamares
+```
 
 ## Keybinds
 

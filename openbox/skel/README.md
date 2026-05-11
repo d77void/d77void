@@ -1,24 +1,13 @@
-Hello
-Thank you for trying d77void Openbox edition.
+## Hello
 
-To run the installer just open a terminal and type:
+Thank you for trying d77void.
 
-```
-sudo d77void-installer
-```
+To install use Calamares from the menu.
 
-Note: 
-To maintain the configuration of the live iso, during install, choose local instead of network install.
-
-During install, add your user to the storage group. That way udiskie will automount disks.
-
-
-To install with Calamares:
+In case it won't start, open a terminal and type:
 
 ```
-su
-
-calamares
+sudo -E calamares
 ```
 
 # 1st run:

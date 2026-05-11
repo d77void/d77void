@@ -1,15 +1,14 @@
-Hello
+## Hello
+
 Thank you for trying d77void.
 
-To run the tui installer just open a terminal and type:
+To install use Calamares from the menu.
+
+In case it won't start, open a terminal and type:
 
 ```
-sudo d77void-installer
+sudo -E calamares
 ```
-
-Note: 
-To maintain the configuration of the live iso, during install with tui, choose local instead of network install and add your user to the storage group. That way udiskie will automount disks.
-
 
 ## Keybinds
 

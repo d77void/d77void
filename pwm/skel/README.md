@@ -1,32 +1,24 @@
 Hello
 
-Thank you for trying d77void wmd77 edition.
+Thank you for trying d77void pwm edition.
 
-This is a very special edition; not only d77void turns 1 year but also 
-it ships my WM, developed with Penrose Libs and written in Rust.
-
-Also, I swapped the usual apps nano and ranger for fresh and joshuto, using some new 
-Rust apps.
+This is a very special edition; it is my way of honour my little kitty who just passed away.
 
 ## Side Note
 
-The config files for startup programs and info on the bar are available at /etc/xdg/wmd77/ ;
+The config files for startup programs and info on the bar are available at /etc/xdg/pwm/ ;
 
 If you want to dig more on the WM configurations, download a tarball from Github or clone the repository 
-https://github.com/dani-77/wmd77 and play with it.
+https://github.com/dani-77/pwm and play with it.
 
 ## Installer
 
-To run the tui installer:
+To install use Calamares from the menu.
+
+In case it won't start, open a terminal and type:
 
 ```
-sudo d77void-installer
-```
-
-To use Calamares:
-
-```
-sudo calamares
+sudo -E calamares
 ```
 
 ## After Install

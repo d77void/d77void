@@ -17,16 +17,12 @@ https://github.com/dani-77/wmd77 and play with it.
 
 ## Installer
 
-To run the tui installer:
+To install use Calamares from the menu.
+
+In case it won't start, open a terminal and type:
 
 ```
-sudo d77void-installer
-```
-
-To use Calamares:
-
-```
-sudo calamares
+sudo -E calamares
 ```
 
 ## After Install
