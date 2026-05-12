@@ -1,5 +1,5 @@
 Hello
-Thank you for trying d77void. This ISO qith Qtile is hybrid (X11/Wayland).
+Thank you for trying d77void. This ISO with Qtile is hybrid (X11/Wayland).
 
 
 To install use Calamares from the menu.
