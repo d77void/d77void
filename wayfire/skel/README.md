@@ -30,8 +30,6 @@ super + q -> close window
 
 super + x -> powermenu
 
-super + a -> menu
-
 super + f -> file manager
 
 super + m -> mail
