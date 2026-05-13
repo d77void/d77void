@@ -467,9 +467,8 @@ build_variant() {
         ;;
 	lxqt)
 	    COMMON=yes
-	    X11=yes
 	    LXQT=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop ImageMagick inxi kitty kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift-gtk sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree xautolock xcompmgr wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	mango)
@@ -556,7 +555,7 @@ build_variant() {
         ;;
 	wayfire)
 	    COMMON=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_WAYFIRE $CALAMARES cliphist grim ImageMagick kitty pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock wayfire wayfire-plugins-extra wcm wf-shell wlr-randr wlogout"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_WAYFIRE $CALAMARES cliphist grim ImageMagick pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock wayfire wayfire-plugins-extra wcm wf-shell wlr-randr wlogout"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	wmd77)
@@ -568,7 +567,7 @@ build_variant() {
 	xfce)
 	    COMMON=yes
 	    XFCE=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop ImageMagick inxi kitty kvantum labwc labwc-tweaks-gtk mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme polkit power-profiles-daemon qt5ct qt6ct ranger  redshift redshift-gtk sddm  scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk transset udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr  xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum labwc labwc-tweaks-gtk mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme polkit power-profiles-daemon qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
         *)
