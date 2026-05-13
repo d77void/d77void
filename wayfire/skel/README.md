@@ -28,6 +28,8 @@ super + ctrl + shift + cursor -> move active window from desktop (up, left, down
 
 super + q -> close window
 
+super + r -> gmrun
+
 super + x -> powermenu
 
 super + f -> file manager
