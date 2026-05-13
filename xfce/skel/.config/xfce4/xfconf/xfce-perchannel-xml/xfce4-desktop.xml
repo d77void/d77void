@@ -27,6 +27,11 @@
           <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/background3.png"/>
         </property>
       </property>
+      <property name="monitoreDP-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/background3.png"/>
+        </property>
+      </property>
     </property>
   </property>
 </channel>

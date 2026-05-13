@@ -134,9 +134,22 @@ configs:
     "/home/dani77":
       row: 0
       col: 0
-    "trash:///":
-      row: 1
-      col: 0
     "/home/dani77/\xC1rea de Trabalho/steam.desktop":
       row: 2
+      col: 0
+- level: 0
+  monitors:
+  - id: "76bdd198bbd0356758d1ee383e5adeb7f9fa07ef"
+    display_name: "AU Optronics 0x103D (eDP-1)"
+    geometry:
+      x: 0
+      y: 0
+      width: 1920
+      height: 1080
+  icons:
+    "/home/anon":
+      row: 0
+      col: 0
+    "trash:///":
+      row: 1
       col: 0

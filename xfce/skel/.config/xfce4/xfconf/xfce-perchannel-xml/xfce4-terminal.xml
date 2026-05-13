@@ -3,7 +3,7 @@
 <channel name="xfce4-terminal" version="1.0">
   <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
   <property name="background-darkness" type="double" value="0.84999999999999998"/>
-  <property name="font-name" type="string" value="Hack 10"/>
+  <property name="font-name" type="string" value="Hack 12"/>
   <property name="color-foreground" type="string" value="#839496"/>
   <property name="color-background" type="string" value="#002b36"/>
   <property name="color-background-vary" type="bool" value="false"/>

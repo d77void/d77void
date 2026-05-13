@@ -70,6 +70,8 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “nos-5508_ext” active: nos-5508_ext (49%)"/>
+        <value type="string" value="no network connection"/>
         <value type="string" value="ligação à rede wi-fi “nos-5508_ext” ativa: nos-5508_ext (54%)"/>
         <value type="string" value="ligação à rede wi-fi “nos-5508_ext” ativa: nos-5508_ext (58%)"/>
         <value type="string" value="ligação à rede wi-fi “nos-5508_ext” ativa: nos-5508_ext (79%)"/>
@@ -147,12 +149,6 @@
         <value type="string" value="htop.desktop"/>
         <value type="string" value="labwc-tweaks-gtk.desktop"/>
         <value type="string" value="brave-browser.desktop"/>
-        <value type="string" value="steam.desktop"/>
-        <value type="string" value="kitty.desktop"/>
-        <value type="string" value="ncspot.desktop"/>
-        <value type="string" value="geany.desktop"/>
-        <value type="string" value="org.gnumeric.gnumeric.desktop"/>
-        <value type="string" value="abiword.desktop"/>
       </property>
     </property>
     <property name="plugin-1" type="string" value="weather">
