@@ -283,6 +283,7 @@ include_x11() {
 include_xfce() {
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds/xfce
 	cp ./common/Wallpaper/background3.png "$INCLUDEDIR"/usr/share/backgrounds/xfce/
+	rm -rf "$INCLUDEDIR"/usr/share/wayland-sessions
 }
 
 include_way() {

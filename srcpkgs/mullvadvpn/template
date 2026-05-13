@@ -1,0 +1,57 @@
+# Template file for 'mullvadvpn'
+pkgname=mullvadvpn
+version=2026.2
+revision=2
+archs="x86_64* aarch64*"
+hostmakedepends="tar xz"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+short_desc="Mullvad VPN client"
+homepage="https://mullvad.net/"
+license="custom:mullvadvpn"
+distfiles="https://github.com/mullvad/mullvadvpn-app/releases/download/${version}/MullvadVPN-${version}_amd64.deb"
+checksum=7b027f5f1ab054b177fccb2237e019fa342874cafe2663eda5b71d5dee8734fa
+repository=d77
+
+do_extract() {
+    ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/MullvadVPN-${version}_amd64.deb
+    tar xf data.tar.xz -C ${wrksrc}
+    mv ${wrksrc}/opt/Mullvad\ VPN ${wrksrc}/opt/Mullvad\VPN
+}
+
+do_install() {
+    vmkdir /usr/bin
+    vmkdir /usr/lib/systemd/system
+    vmkdir /usr/share/bash-completion/completions
+    vmkdir /usr/share/fish/vendor_completions.d
+    vmkdir /usr/share/icons/hicolor
+    vmkdir /usr/share/applications
+    vmkdir /usr/share/doc/mullvad-vpn
+    vmkdir /usr/share/zsh/site-functions
+
+    vmkdir /etc/sv/mullvad
+    echo '#!/bin/sh' > ${DESTDIR}/etc/sv/mullvad/run
+    echo 'exec 2>&1' >> ${DESTDIR}/etc/sv/mullvad/run
+    echo 'sv check dbus > /dev/null || exit 1' >> ${DESTDIR}/etc/sv/mullvad/run
+    echo 'exec /usr/bin/mullvad-daemon -v --disable-stdout-timestamps' >> ${DESTDIR}/etc/sv/mullvad/run
+    chmod 755 ${DESTDIR}/etc/sv/mullvad/run
+
+    vcopy usr/bin/* /usr/bin/
+    vcopy usr/lib/systemd/system/* /usr/lib/systemd/system/
+    vcopy usr/share/icons/hicolor/* /usr/share/icons/hicolor/
+    vcopy usr/share/applications/* /usr/share/applications/
+    vcopy usr/share/doc/mullvad-vpn/* /usr/share/doc/mullvad-vpn/
+    vcopy usr/share/bash-completion/completions/* /usr/share/bash-completion/completions/
+    vcopy usr/share/fish/vendor_completions.d/* /usr/share/fish/vendor_completions.d/
+
+    vmkdir /usr/share/zsh/site-functions
+
+    mkdir -p ${DESTDIR}/opt/Mullvad\ VPN
+    cp -a ${wrksrc}/opt/MullvadVPN/* ${DESTDIR}/opt/Mullvad\ VPN/
+
+    # Exclude apisocks5 completely
+    rm -f ${DESTDIR}/opt/Mullvad\ VPN/resources/apisocks5
+}
+
+pkg_install() {
+    vmove usr/local/share/zsh/site-functions/*
+}

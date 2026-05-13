@@ -1,0 +1,38 @@
+# Template file for 'fresh-editor'
+pkgname=fresh-editor
+version=0.3.5
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style="fetch"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="tar xz"
+makedepends="libgcc-devel glibc-devel"
+depends="libgcc glibc"
+short_desc="A terminal text editor you can just use."
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://sinelaw.github.io/fresh/"
+changelog="https://github.com/sinelaw/fresh/releases/tag/v${version}"
+distfiles="https://github.com/sinelaw/fresh/releases/download/v${version}/fresh-editor-x86_64-unknown-linux-gnu.tar.xz"
+checksum=730d7932e374e480ea0608d526e968829c89975fc9ea45940d54ed94ab4f0cc0
+repository=d77
+
+do_install() {
+    vextract fresh-editor*
+    vmkdir /usr/share/applications
+    vmkdir /usr/share/doc/fresh-editor
+    vmkdir /usr/share/fresh-editor
+    vmkdir /usr/bin
+    vmkdir /usr/share/licenses/$pkgname/
+    vcopy fresh /usr/bin/
+    vinstall README.md 644 /usr/share/doc/fresh-editor/
+    vlicense LICENSE /usr/share/licenses/fresh-editor/
+    vcopy plugins/'*' /usr/share/fresh-editor/
+    vcopy ${FILESDIR}/fresh-editor.desktop /usr/share/applications/
+}
+

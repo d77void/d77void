@@ -1,0 +1,30 @@
+# Template file for 'mullvad-browser'
+pkgname=mullvad-browser
+version=15.0.12
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style="fetch"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="tar xz"
+#makedepends=""
+#depends=""
+short_desc="Privacy-focused browser for Linux, macOS and Windows. Made in collaboration between @torproject and @mullvad"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://mullvad.net"
+changelog="https://github.com/mullvad/${pkgname}/releases/tag/${version}"
+distfiles="https://github.com/mullvad/mullvad-browser/releases/download/${version}/${pkgname}_${version}-1_amd64.deb"
+checksum=7a23ece21666a2db3803bc49922c0635cdecd30ead0c5be2a0ddf45f89d2045b
+repository=d77
+
+do_install() {
+	vextract ${pkgname}_${version}-1_amd64.deb
+	rm usr/lib/mullvad-browser/abicheck
+	rm ${pkgname}_${version}-1_amd64.deb
+	vcopy '*' /
+}

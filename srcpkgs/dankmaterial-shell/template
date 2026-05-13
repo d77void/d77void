@@ -1,0 +1,44 @@
+# Template file for 'dankmaterial-shell'
+pkgname=dankmaterial-shell
+version=1.4.6
+revision=2
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style="fetch"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="pulseaudio-devel pipewire-devel"
+makedepends="pulseaudio-devel pipewire-devel"
+depends="accountsservice cava cliphist i2c-tools qt6-multimedia power-profiles-daemon"
+short_desc="Desktop shell for wayland compositors built with Quickshell & GO"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="MIT"
+homepage="https://github.com/AvengeMedia/DankMaterialShell"
+changelog="https://github.com/AvengeMedia/DankMaterialShell/releases/tag/v{version}"
+distfiles="https://github.com/AvengeMedia/DankMaterialShell/releases/download/v${version}/dms-full-amd64.tar.gz"
+checksum=96093fd55a09e60d9883c276b38088f4227630ddbeb24cceed3120ce75fc2120
+repository=d77
+
+do_install() {
+	vextract dms-full-amd64.tar.gz
+	vmkdir /usr/bin
+	vinstall ./bin/dms 755 /usr/bin/
+	vmkdir /usr/share/bash-completion/completions
+	vmkdir /usr/share/zsh/site-functions
+	vmkdir /usr/share/fish/vendor_completions.d
+	vcopy ./completions/completion.bash /usr/share/bash-completion/completions/dms
+	vcopy ./completions/completion.bash /usr/share/zsh/site-functions/_dms
+	vcopy ./completions/completion.bash /usr/share/fish/vendor_completions.d/dms.fish
+
+	rm -rf ./bin
+	rm -rf ./completions
+	rm -rf ./docs
+	rm dms-full-amd64.tar.gz
+	rm INSTALL.md
+	
+	vmkdir /etc/xdg/quickshell/dms
+	vcopy '*' /etc/xdg/quickshell/
+}

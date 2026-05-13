@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Fresh-Editor
+Comment=Launches the Fresh editor
+Icon=utilities-terminal
+Terminal=true
+Exec=fresh

@@ -1,0 +1,35 @@
+# Template file for 'edit'
+pkgname=edit
+version=2.0.0
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style=cargo
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+#hostmakedepends=""
+#makedepends=""
+#depends=""
+short_desc="Microsoft edit - We all edit."
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="MIT"
+homepage="https://github.com/microsoft/edit"
+changelog="https://github.com/microsoft/${pkgname}/releases/tag/v${version}"
+distfiles="https://github.com/microsoft/${pkgname}/archive/refs/tags/v${version}.tar.gz"
+checksum=f35da309c5f3d92b10e5c4b2267e4d5e29d809b2aa460e80326b11f7feba72a5
+repository=d77
+
+do_build() {
+	export RUSTC_BOOTSTRAP=1
+	cargo build --release
+}
+
+do_install() {
+	vmkdir /usr/bin
+	vmkdir /usr/share/applications
+	vcopy target/release/edit /usr/bin/
+	vcopy ${FILESDIR}/edit.desktop /usr/share/applications/
+}

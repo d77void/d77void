@@ -1,0 +1,36 @@
+# Template file for 'warp'
+pkgname=warp
+version=2025.12.10
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style="fetch"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="tar xz"
+#makedepends=""
+#depends=""
+short_desc="The Rust terminal with agents built in."
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://www.warp.dev/"
+#changelog=""
+distfiles="https://releases.warp.dev/stable/v0.2025.12.10.08.12.stable_03/warp-terminal_0.2025.12.10.08.12.stable.03_amd64.deb"
+checksum=e07fbeca63488f38deb56a7ef6496b3280c0c2bd18d61f03fa12110701beeea4
+repository=d77
+
+do_install() {
+	vextract warp*.deb
+	vmkdir /usr/bin
+	vcopy opt/warpdotdev/warp-terminal/warp /usr/bin/warp-terminal
+	rm -rf opt/
+	rm warp*.deb
+	vcopy '*' /
+}
+
+post_install() {
+	vcopy ${FILESDIR}/dev.warp.Warp.desktop /usr/share/applications/
+}

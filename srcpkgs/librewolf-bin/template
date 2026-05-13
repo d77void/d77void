@@ -1,0 +1,26 @@
+# Template file for 'librewolf-bin'
+pkgname=librewolf-bin
+_pkgname=${pkgname%-bin}
+version=150.0.1
+revision=1
+_pkgrel=1
+archs="x86_64 i686"
+build_style="fetch"
+short_desc="Firefox fork focused on privacy, security and freedom (precompiled)"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="MPL-2.0"
+homepage="https://codeberg.org/librewolf"
+distfiles="https://dl.librewolf.net/librewolf/150.0.1-1/librewolf-150.0.1-1-linux-x86_64-deb.deb"
+conflicts="librewolf"
+checksum=640ed237058cfc26d9fa3078e5845b93e7c484b7154605a9984747848f867b11
+repository=d77
+
+do_install() {
+	vextract -C ${DESTDIR} librewolf-150.0.1-1-linux-x86_64-deb.deb
+	# xbps-src doesn't allow ELF files in /usr/share
+	mv ${DESTDIR}/usr/share/${_pkgname} ${DESTDIR}/usr/lib
+	# recreate symlink
+	ln -frs ${DESTDIR}/usr/lib/${_pkgname}/${_pkgname} ${DESTDIR}/usr/bin
+	# correct path in launcher
+	vsed -i 's|usr/share|usr/lib|g' ${DESTDIR}/usr/share/applications/${_pkgname}.desktop
+}

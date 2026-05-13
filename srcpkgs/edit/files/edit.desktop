@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Edit
+Comment=Launches edit (MS Editor)
+Icon=utilities-terminal
+Terminal=true
+Exec=edit
