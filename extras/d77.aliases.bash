@@ -19,9 +19,9 @@ function _set_pkg_aliases() {
 		alias klist='vkpurge list'
 		alias krem='sudo vkpurge rm'
 
-		alias isobuild='sudo ./d77 -r /home/dani77/calamares-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/'
-		alias hyprbuild='sudo ./d77 -r /home/dani77/calamares-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/sofijacom/hyprland-void/repository-x86_64-glibc'
-		alias cosmicbuild='sudo ./d77 -r /home/dani77/calamares-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://bellawagner.de/repo/x86_64 -b cosmic -- -T d77void'
+		alias isobuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/'
+		alias hyprbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r /home/dani77/d77-hypr/hostdir/binpkgs/'
+		alias cosmicbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://bellawagner.de/repo/x86_64 -b cosmic -- -T d77void'
 	fi
 }
 
