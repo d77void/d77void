@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=chadwm
-Comment=dwm made beautiful
-Exec=/etc/xdg/chadwm/scripts/./run.sh
-Type=Application
