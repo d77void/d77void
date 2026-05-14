@@ -18,13 +18,7 @@ configs:
       y: 0
       width: 1920
       height: 1080
-  icons:
-    "/home/anon":
-      row: 0
-      col: 0
-    "trash:///":
-      row: 1
-      col: 0
+  icons: {}
 - level: 0
   monitors:
   - id: "49411d0c60eb4e999318c428ec06e70a663bd7b6"
@@ -95,6 +89,9 @@ configs:
       row: 7
       col: 0
       last_seen: 1747949981851862
+    "/home/anon":
+      row: 0
+      col: 0
     "9934-0927":
       row: 8
       col: 1
@@ -159,4 +156,7 @@ configs:
       last_seen: 1747949030123632
     "/home/dani77/Desktop/trash-can.desktop":
       row: 3
+      col: 0
+    "trash:///":
+      row: 1
       col: 0

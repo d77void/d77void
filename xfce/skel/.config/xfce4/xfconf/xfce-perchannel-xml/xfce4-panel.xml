@@ -70,6 +70,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “nos-5508_ext” active: nos-5508_ext (63%)"/>
         <value type="string" value="wi-fi network connection “nos-5508_ext” active: nos-5508_ext (49%)"/>
         <value type="string" value="no network connection"/>
         <value type="string" value="ligação à rede wi-fi “nos-5508_ext” ativa: nos-5508_ext (54%)"/>
@@ -140,8 +141,8 @@
       <property name="button-title" type="string" value="d77void"/>
       <property name="button-icon" type="string" value="d77void"/>
       <property name="recent" type="array">
-        <value type="string" value="xfce-ui-settings.desktop"/>
         <value type="string" value="xfce-keyboard-settings.desktop"/>
+        <value type="string" value="xfce-ui-settings.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="xfce4-terminal.desktop"/>
         <value type="string" value="htop.desktop"/>
