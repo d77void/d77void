@@ -10,8 +10,8 @@
       <property name="position" type="string" value="p=6;x=0;y=0"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="16"/>
-      <property name="size" type="uint" value="26"/>
+      <property name="icon-size" type="uint" value="20"/>
+      <property name="size" type="uint" value="30"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="19"/>
         <value type="int" value="2"/>
@@ -33,13 +33,13 @@
       <property name="position" type="string" value="p=10;x=0;y=0"/>
       <property name="length" type="uint" value="1"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="size" type="uint" value="32"/>
+      <property name="size" type="uint" value="36"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="11"/>
         <value type="int" value="12"/>
         <value type="int" value="13"/>
         <value type="int" value="14"/>
-        <value type="int" value="15"/>
+        <value type="int" value="22"/>
         <value type="int" value="16"/>
         <value type="int" value="17"/>
         <value type="int" value="18"/>
@@ -126,11 +126,6 @@
         <value type="string" value="17479479252.desktop"/>
       </property>
     </property>
-    <property name="plugin-15" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17479479263.desktop"/>
-      </property>
-    </property>
     <property name="plugin-16" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="17479479264.desktop"/>
@@ -145,9 +140,11 @@
       <property name="button-title" type="string" value="d77void"/>
       <property name="button-icon" type="string" value="d77void"/>
       <property name="recent" type="array">
+        <value type="string" value="xfce-ui-settings.desktop"/>
+        <value type="string" value="xfce-keyboard-settings.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="xfce4-terminal.desktop"/>
         <value type="string" value="htop.desktop"/>
-        <value type="string" value="labwc-tweaks-gtk.desktop"/>
         <value type="string" value="brave-browser.desktop"/>
       </property>
     </property>
@@ -192,6 +189,11 @@
     <property name="plugin-20" type="string" value="power-manager-plugin"/>
     <property name="plugin-21" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+    </property>
+    <property name="plugin-22" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17787486071.desktop"/>
+      </property>
     </property>
   </property>
 </channel>
