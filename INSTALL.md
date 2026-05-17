@@ -1,53 +1,77 @@
 # d77void iso generator
 
-To use the repo properly, clone the void-packages repo:
+> [!NOTE]
+> This project is **not affiliated with or endorsed by the Void Linux project** or its maintainers.
+>
+> Use at your own discretion.
+-
+## Overview
+
+This repository provides:
+
+- **scripts and skels to build d77void ISOs**
+
+- **d77 will be used to build with Calamares**
+
+- **d77nc will be used to build without Calamares**
+
+If you want to build with Calamares, you should fork d77void/srcpkgs-d77 too and build calamares or 
+add the repository to your custom repositories like this:
 
 ```
-git clone https://github.com/void-linux/void-packages
-```
-copy /srcpkgs contents to void-packages repo and build the pkgs needed (at least Calamares). 
+sudo touch /etc/xbps.d/d77void.conf
+su
+echo repository=https://sourceforge.net/projects/d77void/files/d77void-repo >> /etc/xbps.d/d77void.conf
+``
 
-example
-```
-./xbps-src binary-bootstrap
+Now update the system and you will be able to use d77void srcpkgs repository.
 
-./xbps-src pkg calamares
-```
+<hr>
 
-terminal example)
+## Building
 
-```
-sudo ./d77 -r /home/$USER/void-packages/hostdir/binpkgs/ -b fluxbox -- -T d77void
-```
+- **with Calamares**
 
-## side note *hyprland*
+<details>
+<summary><b> building with calamares </b></summary>
 
-To use it properly, run this:
+[!EXAMPLE]
 
 ```
-sudo ./d77 -r /home/$USER/void-packages/hostdir/binpkgs/ -r https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc -b hyprland -- -T d77void
+sudo ./d77 -r https://sourceforge.net/projects/d77void/files/d77void-repo -b wmd77 -- -T d77void
 ```
+As you can see, the d77 script builds and has the same options as mkiso.sh.
 
-instead of the usual mkiso.sh command; it is needed to accept a new outside repo.
+It is though heavily modified to include the skel of the desired variant and a few more things.
 
-## side note *cosmic*
+Audit the script and adapt it to your need and desire.
 
-To use it properly, run this:
+</details>
+
+
+- **without Calamares**
+
+<details>
+<summary><b> building without calamares </b></summary>
+
+[!EXAMPLE]
 
 ```
-sudo ./d77 -r /home/$USER/void-packages/hostdir/binpkgs/ -r https://bellawagner.de/repo/x86_64 -b cosmic -- -T d77void
+sudo ./d77nc -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64 -b hyprland -- -T d77void
 ```
+As you can see, the d77nc script builds and has the same options as mkiso.sh.
 
-instead of the usual mkiso.sh command; it is needed to accept a new outside repo.
+Notice that I included an extra repository to fetch hyprland though.
 
-## side note *labwc*
+It is though heavily modified to include the skel of the desired variant and a few more things.
 
-To use it properly, compile labwc-menu-generator and labwc-tweaks-qt using void-packages and run this:
+Audit the script and adapt it to your need and desire.
 
-```
-sudo ./d77 -r /home/$USER/void-packages/hostdir/binpkgs -b labwc -- -T d77void -v linux6.11
-```
+</details>
 
-instead of the usual mkiso.sh command; it is needed to accept a local repo or to remove labwc-menu-generator, labwc-tweaks-qt and sfwbar packages from the d77 labwc variant.
+<hr>
 
-Happy hacking. 
+## Credits
+
+- [Nizarjh: blackhole-vl](https://github.com/Event-Horizon-VL/blackhole-vl): Inspiration on README file
+
