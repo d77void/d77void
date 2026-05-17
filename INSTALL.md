@@ -35,7 +35,6 @@ Now update the system and you will be able to use d77void srcpkgs repository.
 <details>
 <summary><b> building with calamares </b></summary>
 
-[!EXAMPLE]
 
 ```
 sudo ./d77 -r https://sourceforge.net/projects/d77void/files/d77void-repo -b wmd77 -- -T d77void
@@ -54,7 +53,6 @@ Audit the script and adapt it to your need and desire.
 <details>
 <summary><b> building without calamares </b></summary>
 
-[!EXAMPLE]
 
 ```
 sudo ./d77nc -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64 -b hyprland -- -T d77void
