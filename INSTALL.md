@@ -22,7 +22,7 @@ add the repository to your custom repositories like this:
 sudo touch /etc/xbps.d/d77void.conf
 su
 echo repository=https://sourceforge.net/projects/d77void/files/d77void-repo >> /etc/xbps.d/d77void.conf
-``
+```
 
 Now update the system and you will be able to use d77void srcpkgs repository.
 
