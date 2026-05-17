@@ -584,7 +584,7 @@ build_variant() {
 	scroll)
 	    COMMON=yes
 	    FUZZEL=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE cliphist grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	sway)
