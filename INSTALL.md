@@ -4,7 +4,7 @@
 > This project is **not affiliated with or endorsed by the Void Linux project** or its maintainers.
 >
 > Use at your own discretion.
--
+
 ## Overview
 
 This repository provides:
@@ -53,8 +53,6 @@ Audit the script and adapt it to your need and desire.
 sudo ./d77nc -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64 -b hyprland -- -T d77void
 ```
 As you can see, the d77nc script builds and has the same options as mkiso.sh.
-
-Notice that I included an extra repository to fetch hyprland though.
 
 It is though heavily modified to include the skel of the desired variant and a few more things.
 
