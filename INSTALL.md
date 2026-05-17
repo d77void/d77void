@@ -30,8 +30,6 @@ Now update the system and you will be able to use d77void srcpkgs repository.
 
 ## Building
 
-- **building with calamares**
-
 <details>
 <summary><b> building with calamares </b></summary>
 
@@ -46,9 +44,6 @@ It is though heavily modified to include the skel of the desired variant and a f
 Audit the script and adapt it to your need and desire.
 
 </details>
-
-
-- **building without calamares**
 
 <details>
 <summary><b> building without calamares </b></summary>
