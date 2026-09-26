@@ -483,7 +483,7 @@ build_variant() {
 		hypr-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms hyprland hyprland-guiutils hyprpaper kitty libinput-hypr mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms hyprland hyprland-guiutils hyprpaper kitty libinput-hypr matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-noctalia)
@@ -543,7 +543,7 @@ build_variant() {
 		mango-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms ImageMagick kitty mango mate-polkit matugen qt5-wayland qt6-wayland wayland-devel wayland-protocols xdg-desktop-portal-wlr"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms ImageMagick kitty mango matugen qt5-wayland qt6-wayland wayland-devel wayland-protocols xdg-desktop-portal-wlr"
 			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango-noctalia)
@@ -564,7 +564,7 @@ build_variant() {
 		niri-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms gnome-keyring grim ImageMagick kitty matugen niri-d77 pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-noctalia)

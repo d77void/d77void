@@ -7,7 +7,6 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("pipewire")
 	hl.exec_cmd("udiskie -at")
-	hl.exec_cmd("/usr/libexec/polkit-mate-authentication-agent-1")
 	hl.exec_cmd("dcal run --session --hidden")
 	hl.exec_cmd("xdg-user-dirs-update")
 	hl.exec_cmd("xdg-user-dirs-gtk-update")
