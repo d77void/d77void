@@ -23,8 +23,30 @@ if ! grep -q ${USERSHELL} ${NEWROOT}/etc/shells ; then
     echo ${USERSHELL} >> ${NEWROOT}/etc/shells
 fi
 
+# musl (>= 1.2.6) implements fgetxattr through /proc/self/fd, and there is no
+# /proc inside the new root at this point, so useradd -m aborts its skel copy
+# with "Bad file descriptor" and leaves the home nearly empty. Provide /proc
+# for the chroot commands below.
+PROCMOUNTED=
+if [ ! -e ${NEWROOT}/proc/self ]; then
+    mount -t proc proc ${NEWROOT}/proc && PROCMOUNTED=1
+fi
+
 # Create new user and remove password. We'll use autologin by default.
 chroot ${NEWROOT} useradd -m -c $USERNAME -G audio,video,wheel -s $USERSHELL $USERNAME
+
+# Safety net: if the skel still was not fully copied, copy it explicitly.
+if [ -d ${NEWROOT}/etc/skel ]; then
+    SKELN=$(ls -A ${NEWROOT}/etc/skel | wc -l)
+    HOMEN=$(ls -A ${NEWROOT}/home/$USERNAME | wc -l)
+    if [ "$HOMEN" -lt "$SKELN" ]; then
+        # cp -a would also apply the skel dir's mode to the home itself
+        HOMEMODE=$(chroot ${NEWROOT} stat -c %a /home/$USERNAME)
+        chroot ${NEWROOT} cp -a /etc/skel/. /home/$USERNAME/
+        chroot ${NEWROOT} chown -R $USERNAME: /home/$USERNAME
+        [ -n "$HOMEMODE" ] && chroot ${NEWROOT} chmod $HOMEMODE /home/$USERNAME
+    fi
+fi
 chroot ${NEWROOT} passwd -d $USERNAME >/dev/null 2>&1
 
 # Setup default root/user password (voidlinux).
@@ -55,3 +77,6 @@ fi
 if getargbool 0 live.autologin; then
         sed -i "s,GETTY_ARGS=\"--noclear\",GETTY_ARGS=\"--noclear -a $USERNAME\",g" ${NEWROOT}/etc/sv/agetty-tty1/conf
 fi
+
+# Hand the new root back without our temporary /proc (switch_root moves it).
+[ -n "$PROCMOUNTED" ] && umount ${NEWROOT}/proc
