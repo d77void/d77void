@@ -47,6 +47,8 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("sh -c noctalia run")
 	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
+	hl.exec_cmd("xdg-user-dirs-update")
+	hl.exec_cmd("xdg-user-dirs-gtk-update")
 	hl.exec_cmd("~/./.auto.sh")
 end)
 

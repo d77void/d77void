@@ -24,6 +24,8 @@ nm-applet &
 cbatticon &
 redshift-gtk -l 41.6:-8.62  &
 xautolock -time 5 -locker slock &
+xdg-user-dirs-update &
+xdg-user-dirs-gtk-update &
 ~/./.auto.sh &
 
 # remove all existing keybindings

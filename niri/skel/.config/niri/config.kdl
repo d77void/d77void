@@ -264,6 +264,9 @@ spawn-at-startup "udiskie" "-at"
 spawn-at-startup "/usr/bin/octoxbps-notifier"
 spawn-at-startup "screenlock"
 spawn-at-startup "wlsunset" "-l 41,6" "-L -8,62" //Porto, Portugal
+spawn-at-startup "xdg-user-dirs-update"
+spawn-at-startup "xdg-user-dirs-gtk-update"
+spawn-at-startup "~/./.auto.sh"
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

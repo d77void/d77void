@@ -327,6 +327,8 @@ bar {
 }
 
 # README
+exec xdg-user-dirs-update 
+exec xdg-user-dirs-gtk-update 
 exec ~/./.auto.sh 
 
 include /etc/sway/config.d/*

@@ -66,6 +66,8 @@ exec --no-startup-id feh --bg-fill ~/Wallpaper/background1.png
 bindsym Mod1+t exec i3lock -i ~/Wallpaper/background1.png
 
 # RREADME.md
+exec xdg-user-dirs-update &
+exec xdg-user-dirs-gtk-update &
 exec ~/./.auto.sh &
 
 # Scratchpad

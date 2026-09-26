@@ -145,6 +145,8 @@ wasp.autostart = {
 { "pipewire" },
 { "sh", "-c", "qsd77 run -c utumno" },
 { "/usr/libexec/polkit-mate-authentication-agent-1" },
+{ "sh", "-c", "xdg-user-dirs-update" },
+{ "sh", "-c", "xdg-user-dirs-gtk-update" },
 { "sh", "-c", "~/./.auto.sh" },
 }
 

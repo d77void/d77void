@@ -711,6 +711,8 @@ awful.spawn.with_shell("xcompmgr -c -f -n")
 awful.spawn.with_shell("synclient TapButton1=1")
 awful.spawn.with_shell("udiskie -a")
 awful.spawn.with_shell("redshift")
+awful.spawn.with_shell("xdg-user-dirs-update")
+awful.spawn.with_shell("xdg-user-dirs-gtk-update")
 awful.spawn.with_shell("~/.auto.sh")
 awful.spawn.with_shell("xautolock -time 10 -locker slock")
 -- }}}

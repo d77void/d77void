@@ -53,8 +53,11 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("waybar -c ~/.config/waybar/config_hypr.jsonc")
 	hl.exec_cmd("nm-applet --indicator")
 	hl.exec_cmd("wlsunset -g 0.8 -l 41.6 -L -8.62")
-	hl.exec_cmd("/usr/lib/mate-polkit/polkit-mate-authentication-agent-1")
+	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
 	hl.exec_cmd("~/.azotebg-hyprland")
+	hl.exec_cmd("xdg-user-dirs-update")
+	hl.exec_cmd("xdg-user-dirs-gtk-update")
+	hl.exec_cmd("~/./.auto.sh")
 end)
 
 

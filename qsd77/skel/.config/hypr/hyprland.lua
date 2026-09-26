@@ -50,6 +50,8 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
+	hl.exec_cmd("xdg-user-dirs-update")
+	hl.exec_cmd("xdg-user-dirs-gtk-update")
 	hl.exec_cmd("~/./.auto.sh")
 end)
 

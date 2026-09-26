@@ -719,6 +719,8 @@ awful.spawn.with_shell("dunst")
 awful.spawn.with_shell("udiskie -a")
 awful.spawn.with_shell("wlsunset -l 41.16 -L -8.62 -T 6500 -t 4000")
 awful.spawn.with_shell("screenlock")
+awful.spawn.with_shell("xdg-user-dirs-update")
+awful.spawn.with_shell("xdg-user-dirs-gtk-update")
 awful.spawn.with_shell("~/./.auto.sh")
 -- }}}
 

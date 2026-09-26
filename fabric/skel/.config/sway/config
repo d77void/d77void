@@ -254,6 +254,8 @@ exec udiskie -a &
 exec dunst &
 exec fabric-d77 &
 exec awww-daemon &
+exec xdg-user-dirs-update &
+exec xdg-user-dirs-gtk-update &
 exec ~/./.auto.sh &
 
 include /etc/sway/config.d/*

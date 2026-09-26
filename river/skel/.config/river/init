@@ -27,6 +27,8 @@ riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"
 riverctl spawn "octoxbps-notifier"
 riverctl spawn "swaync" 
 riverctl spawn "wlsunset -g 0.8 -l 41.6 -L -8.62" 
+riverctl spawn "xdg-user-dirs-update" 
+riverctl spawn "xdg-user-dirs-gtk-update" 
 riverctl spawn "~/./.auto.sh" 
 
 # Idle

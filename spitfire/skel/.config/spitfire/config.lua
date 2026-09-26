@@ -116,5 +116,7 @@ spitfire.autostart({
 "qsd77 run -c utumno",
 "pipewire",
 "/usr/libexec/polkit-mate-authentication-agent-1",
+"xdg-user-dirs-update",
+"xdg-user-dirs-gtk-update",
 "~/./.auto.sh",
 })

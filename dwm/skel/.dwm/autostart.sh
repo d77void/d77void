@@ -37,4 +37,6 @@ exec synclient TapButton2=3 &
 exec synclient TapButton3=2 &
 
 # README.md
+exec xdg-user-dirs-update &
+exec xdg-user-dirs-gtk-update &
 exec ~/./.auto.sh &

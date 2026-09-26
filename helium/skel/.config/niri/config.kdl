@@ -196,6 +196,8 @@ environment {
   TERMINAL "kitty"
 }
 spawn-at-startup "awww-daemon"
+spawn-at-startup "xdg-user-dirs-update"
+spawn-at-startup "xdg-user-dirs-gtk-update"
 spawn-at-startup "~/./.auto.sh"
 spawn-at-startup "hypridle"
 spawn-at-startup "hyprsunset"
