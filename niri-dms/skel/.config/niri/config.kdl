@@ -66,31 +66,6 @@ input {
         numlock
     }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    // All commented-out settings here are examples, not defaults.
-    touchpad {
-        // off
-        tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
-        natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
-    }
-
-    mouse {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "no-scroll"
-    }
-
     trackpoint {
         // off
         // natural-scroll
@@ -198,6 +173,7 @@ spawn-at-startup "pipewire"
 spawn-at-startup "udiskie" "-at"
 spawn-at-startup "dms" "run"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "dcal" "run" "--session" "--hidden"
 hotkey-overlay {
     skip-at-startup
 }
@@ -261,7 +237,10 @@ window-rule {
     open-floating false
 }
 window-rule {
+    match app-id=r#"^org\.gnome\.Calculator$"#
     match app-id=r#"^qt-sudo$"#
+    match app-id=r#"^d77run$"#
+    match app-id=r#"^nmtui-float$"#
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
     match app-id=r#"^blueman-manager$"#
@@ -308,10 +287,20 @@ recent-windows {
 }
 
 // Include dms files
-include "dms/alttab.kdl"
-include "dms/binds.kdl"
-include "dms/colors.kdl"
-include "dms/cursor.kdl"
-include "dms/layout.kdl"
-include "dms/outputs.kdl"
+include optional=true "dms/colors.kdl"
+include optional=true "dms/layout.kdl"
+include optional=true "dms/alttab.kdl"
+include optional=true "dms/binds.kdl"
+include optional=true "dms/outputs.kdl"
+include optional=true "dms/cursor.kdl"
+include optional=true "dms/input.kdl"
+include optional=true "dms/windowrules.kdl"
 include "dms/wpblur.kdl"
+
+// d77void overrides, kept after the dms includes so they win over the
+// DMS-generated binds: DMS puts the overview on Mod+Tab and Mod+O; keep
+// Mod+Tab, add Mod+D for it and give Mod+O to d77run
+binds {
+    Mod+D repeat=false hotkey-overlay-title="Overview" { toggle-overview; }
+    Mod+O hotkey-overlay-title="Run Dialog" { spawn "d77run"; }
+}

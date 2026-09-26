@@ -40,6 +40,6 @@ super + shift + / -> keybinds cheat sheet
 
 ## Hyprland tweaks
 
-To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/hypr/hyprland.conf and the files inside ~/.config/hypr/dms/ ; the files are self explanatory and with several examples already configured.
+To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/hypr/d77.lua (d77void additions, safe from DMS rewrites), ~/.config/hypr/hyprland.lua and the files inside ~/.config/hypr/dms/ ; the files are self explanatory and with several examples already configured. The config uses Hyprland's Lua format.
 
 Have fun!

@@ -460,7 +460,7 @@ build_variant() {
 		helium)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww grim helium-d77 hypridle hyprlock hyprsunset mate-polkit niri ollama qt5-wayland qt6-wayland xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww grim helium-d77 hypridle hyprlock hyprsunset mate-polkit niri-d77 ollama qt5-wayland qt6-wayland xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		herbstluftwm)
@@ -483,8 +483,8 @@ build_variant() {
 		hypr-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop hyprland hyprland-guiutils hyprpaper kitty libinput-hypr mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
-			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms hyprland hyprland-guiutils hyprpaper kitty libinput-hypr mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
+			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-noctalia)
 			COMMON=yes
@@ -543,8 +543,8 @@ build_variant() {
 		mango-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop ImageMagick kitty mango mate-polkit matugen qt5-wayland qt6-wayland wayland-devel wayland-protocols xdg-desktop-portal-wlr"
-			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms ImageMagick kitty mango mate-polkit matugen qt5-wayland qt6-wayland wayland-devel wayland-protocols xdg-desktop-portal-wlr"
+			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango-noctalia)
 			COMMON=yes
@@ -558,19 +558,19 @@ build_variant() {
 			WAY=yes
 			NIRI=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty mate-polkit niri qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty mate-polkit niri-d77 qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-dms)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop gnome-keyring grim ImageMagick kitty mate-polkit matugen niri pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankcalendar danksearch dms gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			SERVICES="$SERVICES cupsd cups-browsed dbus dsearch NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-noctalia)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty mate-polkit matugen niri noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		openbox)

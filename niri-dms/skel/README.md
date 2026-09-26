@@ -22,6 +22,8 @@ super + v -> clipboard
 
 super + m -> task manager
 
+super + o -> d77run
+
 super + y -> wallpaper picker
 
 super + x -> powermenu
@@ -32,7 +34,7 @@ super + shift + e -> logout
 
 super + q -> close window
 
-super + d -> toggle overview
+super + d / super + tab -> toggle overview
 
 super + shift + / -> keybinds cheat sheet
 

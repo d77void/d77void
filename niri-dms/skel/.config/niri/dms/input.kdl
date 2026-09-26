@@ -3,8 +3,13 @@
 // ! CHANGES WILL BE OVERWRITTEN !
 // ! PLACE YOUR CUSTOM CONFIGURATION ELSEWHERE !
 
-recent-windows {
-    highlight {
-        corner-radius 12
+input {
+    mouse {
+        accel-speed 0.0
+    }
+    touchpad {
+        tap
+        accel-speed 0.0
+        natural-scroll
     }
 }
