@@ -278,6 +278,22 @@ include_plasma() {
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/dconf "$INCLUDEDIR"/etc/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
+	# _include_base copies common/config/mimeapps.list (Mousepad) on top of
+	# the Plasma skel, but Plasma ships Kate and $PLASMA_BROWSER instead.
+	local browser_desktop=librewolf.desktop
+	[ -n "$MUSL" ] && browser_desktop=firefox.desktop
+	cat > "$INCLUDEDIR"/etc/skel/.config/mimeapps.list <<- EOF
+		[Added Associations]
+		text/plain=org.kde.kate.desktop;
+
+		[Default Applications]
+		text/plain=org.kde.kate.desktop
+		text/html=$browser_desktop
+		x-scheme-handler/http=$browser_desktop
+		x-scheme-handler/https=$browser_desktop
+		x-scheme-handler/about=$browser_desktop
+		x-scheme-handler/unknown=$browser_desktop
+	EOF
 }
 
 include_poly() {
