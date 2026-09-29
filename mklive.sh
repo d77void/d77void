@@ -494,8 +494,14 @@ generate_iso_image() {
         -volid VOID_LIVE
     )
 
+    # Same layout as mkarchiso (and 66-d77): the ISO starts 16 sectors in and
+    # the EFI image is appended as a plain GPT partition. The old
+    # -isohybrid-gpt-basdat/-isohybrid-apm-hfsplus layout (MBR + an
+    # overlapping GPT + an Apple partition map) left a MacBook Pro 2011's
+    # firmware stuck on a grey screen before its boot picker.
     if [ "$IMAGE_TYPE" = hybrid ]; then
-        XORRISO_ARGS+=(-isohybrid-mbr "$SYSLINUX_DATADIR"/isohdpfx.bin)
+        XORRISO_ARGS+=(-isohybrid-mbr "$SYSLINUX_DATADIR"/isohdpfx.bin
+            --mbr-force-bootable -partition_offset 16)
     fi
 
     n=1
@@ -507,8 +513,9 @@ generate_iso_image() {
         case "${bootloader}" in
             grub)
                 XORRISO_ARGS+=(
-                    -e boot/grub/efiboot.img -no-emul-boot
-                    -isohybrid-gpt-basdat -isohybrid-apm-hfsplus
+                    -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B "$GRUB_DIR"/efiboot.img
+                    -appended_part_as_gpt
+                    -e --interval:appended_partition_2:all:: -no-emul-boot
                 )
                 ;;
             syslinux)
