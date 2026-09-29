@@ -282,6 +282,10 @@ include_plasma() {
 	# the Plasma skel, but Plasma ships Kate and $PLASMA_BROWSER instead.
 	local browser_desktop=librewolf.desktop
 	[ -n "$MUSL" ] && browser_desktop=firefox.desktop
+	# The panel launcher and Kickoff favourites in the skel name librewolf.desktop
+	sed -i "s/applications:librewolf\.desktop/applications:$browser_desktop/" \
+		"$INCLUDEDIR"/etc/skel/.config/kactivitymanagerd-statsrc \
+		"$INCLUDEDIR"/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc
 	cat > "$INCLUDEDIR"/etc/skel/.config/mimeapps.list <<- EOF
 		[Added Associations]
 		text/plain=org.kde.kate.desktop;
@@ -416,6 +420,9 @@ build_variant() {
 	SERVICES="sshd chronyd"
 
 	LIGHTDM_SESSION=''
+	# Desktop file for text/plain when the variant doesn't ship Mousepad
+	# (common/config/mimeapps.list); "none" when it has no GUI editor.
+	TEXT_EDITOR=''
 
 	case $variant in
 		base)
@@ -439,6 +446,7 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		cosmic)
+			TEXT_EDITOR=com.system76.CosmicEdit.desktop
 			COMMON=yes
 			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_COSMIC $CALAMARES $BROWSER cliphist cosmic-desktop-full cosmic-greeter cosmic-tweaks gnome-keyring qt5-wayland qt6-wayland xarchiver"
@@ -469,6 +477,7 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		gnome)
+			TEXT_EDITOR=org.gnome.TextEditor.desktop
 			GNOME=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER extension-manager gdm gnome gnome-keyring gnome-shell-extensions qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-gnome"
 			SERVICES="$SERVICES cupsd cups-browsed dbus gdm NetworkManager polkitd power-profiles-daemon"
@@ -542,6 +551,7 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		lxqt)
+			TEXT_EDITOR=none
 			COMMON=yes
 			SDDM=yes
 			LXQT=yes
@@ -604,6 +614,7 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		pwm)
+			TEXT_EDITOR=fresh.desktop
 			COMMON=yes
 			X11=yes
 			SDDM=yes
@@ -692,6 +703,7 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		wmd77)
+			TEXT_EDITOR=fresh.desktop
 			COMMON=yes
 			X11=yes
 			SDDM=yes
@@ -735,6 +747,12 @@ EOF
 	[ "$WAY" = yes ]     && include_way
 	[ "$XFCE" = yes ]    && include_xfce
 	[ "$X11" = yes ]     && include_x11
+
+	case "$TEXT_EDITOR" in
+		"") ;;
+		none) rm -f "$INCLUDEDIR"/etc/skel/.config/mimeapps.list ;;
+		*) sed -i "s/org\.xfce\.mousepad\.desktop/$TEXT_EDITOR/" "$INCLUDEDIR"/etc/skel/.config/mimeapps.list ;;
+	esac
 
 	if [ "$WANT_INSTALLER" = yes ]; then
 		include_installer
