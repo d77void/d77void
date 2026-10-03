@@ -5,7 +5,7 @@ welcomeStyleCalamares:   true
 welcomeExpandingLogo:   true
 
 windowExpanding:    normal
-windowSize: 800px,520px
+windowSize: 1000px,650px
 windowPlacement: center
 
 sidebar: widget
@@ -27,9 +27,9 @@ strings:
     donateUrl:           https://kde.org/community/donations/index.php
 
 images:
-    productIcon:         "1squid.png"
-    productLogo:         "1squid.png"
-    productWelcome:      "languages.png"
+    productIcon:         "d77-logo.png"
+    productLogo:         "d77-logo.png"
+    productWelcome:      "d77-logo.png"
 
 style:
    SidebarBackground:        "#292F34"

@@ -16,6 +16,15 @@ This repository is a fork of void-mklive, heavily modified to include skel for a
 
 It is possible to build ISOs with and without Calamares.
 
+Builds with Calamares use the d77void logo throughout the installer and a
+four-image slideshow presenting d77void, Void Linux, the available desktop
+choices and the project community. The slideshow images fill the available
+area and the installer window adapts to smaller screens.
+
+Every variant identifies itself as `d77void GNU/Linux` through
+`/etc/os-release`, while `ID_LIKE=void` records its Void Linux base. The file
+uses the project website and the `d77void` icon installed with the image.
+
 ## Usage
 
 Clone repository
