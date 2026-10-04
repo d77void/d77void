@@ -168,6 +168,21 @@ include_plymouth() {
 	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 }
 
+# System identity for every variant, including base, which skips
+# _include_base. Keep base-files' /usr/lib/os-release intact; /etc takes
+# precedence. base-files owns the /etc/os-release symlink without listing it
+# in conf_files, so a later base-files update would point it back at Void's
+# file; the noextract rule makes xbps skip that path while unpacking.
+_include_identity() {
+	install -Dm644 ./common/os-release "$INCLUDEDIR"/usr/lib/d77void-os-release
+	mkdir -p "$INCLUDEDIR"/etc
+	ln -sfn ../usr/lib/d77void-os-release "$INCLUDEDIR"/etc/os-release
+	install -Dm644 ./common/xbps.d/90-d77void-os-release.conf \
+		"$INCLUDEDIR"/usr/share/xbps.d/90-d77void-os-release.conf
+	install -Dm644 ./assets/logo.png \
+		"$INCLUDEDIR"/usr/share/icons/hicolor/512x512/apps/d77void.png
+}
+
 _include_base() {
 	mkdir -p "$INCLUDEDIR"/boot/grub/themes
 	mkdir -p "$INCLUDEDIR"/etc
@@ -177,7 +192,6 @@ _include_base() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/lib
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
-	mkdir -p "$INCLUDEDIR"/usr/share/icons/hicolor/512x512/apps
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
@@ -195,14 +209,10 @@ _include_base() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	# Keep base-files' /usr/lib/os-release intact; /etc takes precedence.
-	cp ./common/os-release "$INCLUDEDIR"/usr/lib/d77void-os-release
-	ln -sfn ../usr/lib/d77void-os-release "$INCLUDEDIR"/etc/os-release
 	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/90-udisks-ignore-loop.rules "$INCLUDEDIR"/etc/udev/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
-	cp ./assets/logo.png "$INCLUDEDIR"/usr/share/icons/hicolor/512x512/apps/d77void.png
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
@@ -735,6 +745,7 @@ indicators = ~host;~spacer;~clock;~spacer;~layout;~session;~a11y;~power
 EOF
 	fi
 
+	_include_identity
 	[ "$BOX" = yes ]     && include_box
 	[ "$COMMON" = yes ]  && include_common
 	[ "$GREETD" = yes ]  && include_greetd

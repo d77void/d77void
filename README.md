@@ -24,6 +24,8 @@ area and the installer window adapts to smaller screens.
 Every variant identifies itself as `d77void GNU/Linux` through
 `/etc/os-release`, while `ID_LIKE=void` records its Void Linux base. The file
 uses the project website and the `d77void` icon installed with the image.
+An XBPS `noextract` rule keeps this symlink when `base-files` is updated;
+`xbps-pkgdb -a` reports it as a modified symlink, which is expected.
 
 ## Usage
 
