@@ -77,7 +77,7 @@ if [ -n "$MUSL" ]; then
 else
 	ARCH_PATH="x86_64"
 	BROWSER="brave-bin"
-	PLASMA_BROWSER="librewolf-bin"
+	PLASMA_BROWSER="librewolf"
 	REPO_PKGS="void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree"
 fi
 
