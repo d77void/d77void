@@ -1,3 +1,5 @@
+-- somewm 2.0 removed awful.util; lain/vicious still need it
+package.loaded["awful.util"] = package.loaded["awful.util"] or require("awful_util_compat")
 local appmenu = require("appmenu")
 local lain = require("lain")
 local vicious = require("vicious")
@@ -8,6 +10,7 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+awful.util = awful.util or package.loaded["awful.util"]
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -48,7 +51,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "d77"))
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/d77/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -176,12 +179,21 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        -- gears.wallpaper was removed in somewm 2.0; use awful.wallpaper
+        awful.wallpaper {
+            screen = s,
+            widget = {
+                image     = wallpaper,
+                resize    = true,
+                upscale   = true,
+                downscale = true,
+                horizontal_fit_policy = "fit",
+                vertical_fit_policy   = "fit",
+                widget    = wibox.widget.imagebox,
+            },
+        }
     end
 end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -590,7 +602,7 @@ root.keys(globalkeys)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
+local client_rules = {
     -- All clients will match this rule.
     { rule = { },
       properties = { border_width = beautiful.border_width,
@@ -645,6 +657,12 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
 }
+
+-- awful.rules was removed in somewm 2.0; register the rules through ruled
+local ruled = require("ruled")
+ruled.client.connect_signal("request::rules", function()
+    ruled.client.append_rules(client_rules)
+end)
 -- }}}
 
 -- {{{ Signals

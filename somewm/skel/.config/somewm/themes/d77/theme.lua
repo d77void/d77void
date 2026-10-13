@@ -8,7 +8,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.dir	= os.getenv("HOME") .. "/.config/awesome/themes/d77"
+theme.dir	= require("gears.filesystem").get_configuration_dir() .. "themes/d77"
 theme.wallpaper = theme.dir .. "/d77-background.png"
 -- }}}
 
@@ -85,22 +85,24 @@ theme.menu_submenu_icon      = theme.dir .. "/submenu.png"
 -- }}}
 
 -- {{{ Layout
-theme.layout_tile       = theme.dir .. "/layouts/tile.png"
-theme.layout_tileleft   = theme.dir .. "/layouts/tileleft.png"
-theme.layout_tilebottom = theme.dir .. "/layouts/tilebottom.png"
-theme.layout_tiletop    = theme.dir .. "/layouts/tiletop.png"
-theme.layout_fairv      = theme.dir .. "/layouts/fairv.png"
-theme.layout_fairh      = theme.dir .. "/layouts/fairh.png"
-theme.layout_spiral     = theme.dir .. "/layouts/spiral.png"
-theme.layout_dwindle    = theme.dir .. "/layouts/dwindle.png"
-theme.layout_max        = theme.dir .. "/layouts/max.png"
-theme.layout_fullscreen = theme.dir .. "/layouts/fullscreen.png"
-theme.layout_magnifier  = theme.dir .. "/layouts/magnifier.png"
-theme.layout_floating   = theme.dir .. "/layouts/floating.png"
-theme.layout_cornernw   = theme.dir .. "/layouts/cornernw.png"
-theme.layout_cornerne   = theme.dir .. "/layouts/cornerne.png"
-theme.layout_cornersw   = theme.dir .. "/layouts/cornersw.png"
-theme.layout_cornerse   = theme.dir .. "/layouts/cornerse.png"
+-- Lucide icons (same set as somewm's bundled themes), recolored below
+theme.layout_tile       = theme.dir .. "/layouts/panel-left.svg"
+theme.layout_tileleft   = theme.dir .. "/layouts/panel-right.svg"
+theme.layout_tiletop    = theme.dir .. "/layouts/panel-bottom.svg"
+theme.layout_tilebottom = theme.dir .. "/layouts/panel-top.svg"
+theme.layout_fairv      = theme.dir .. "/layouts/grid-2x2.svg"
+theme.layout_fairh      = theme.dir .. "/layouts/columns-2.svg"
+theme.layout_spiral     = theme.dir .. "/layouts/orbit.svg"
+theme.layout_dwindle    = theme.dir .. "/layouts/shrink.svg"
+theme.layout_max        = theme.dir .. "/layouts/maximize.svg"
+theme.layout_fullscreen = theme.dir .. "/layouts/scan.svg"
+theme.layout_magnifier  = theme.dir .. "/layouts/search.svg"
+theme.layout_floating   = theme.dir .. "/layouts/move.svg"
+theme.layout_cornernw   = theme.dir .. "/layouts/panels-top-left.svg"
+theme.layout_cornerne   = theme.dir .. "/layouts/panels-top-left.svg"
+theme.layout_cornersw   = theme.dir .. "/layouts/panels-top-left.svg"
+theme.layout_cornerse   = theme.dir .. "/layouts/panels-top-left.svg"
+require("beautiful.theme_assets").recolor_layout(theme, theme.fg_normal)
 -- }}}
 
 -- {{{ Titlebar
