@@ -344,7 +344,7 @@ include_way() {
 }
 
 include_x11() {
-	PKGS="$PKGS dunst redshift scrot slock st transset xautolock xcompmgr xterm"
+	PKGS="$PKGS dunst redshift scrot d77-slock d77-st transset xautolock xcompmgr xterm"
 	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
 }
 
@@ -473,7 +473,7 @@ build_variant() {
 			SDDM=yes
 			DMENU=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dwm mate-polkit qt5-graphicaleffects slstatus sxhkd xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES d77-dwm mate-polkit qt5-graphicaleffects d77-slstatus sxhkd xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		fabric)
@@ -570,7 +570,7 @@ build_variant() {
 			COMMON=yes
 			SDDM=yes
 			LXQT=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot slock smartmontools system-config-printer transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wireplumber xautolock xcompmgr wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot d77-slock smartmontools system-config-printer transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wireplumber xautolock xcompmgr wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango)
@@ -727,7 +727,7 @@ build_variant() {
 		;;
 		xfce)
 			XFCE=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xautolock xcompmgr xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot d77-slock smartmontools system-config-printer transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xautolock xcompmgr xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES cupsd cups-browsed dbus sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		*)
