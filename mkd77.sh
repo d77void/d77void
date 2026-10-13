@@ -448,7 +448,7 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu mate-polkit qt5-graphicaleffects wireless_tools xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome d77-awesome-appmenu mate-polkit qt5-graphicaleffects wireless_tools xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		bspwm)
@@ -671,7 +671,7 @@ build_variant() {
 			COMMON=yes
 			GREETD=yes
 			NIRI=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awesome-appmenu dunst fuzzel mate-polkit nwg-look somewm swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty d77-awesome-appmenu dunst fuzzel mate-polkit nwg-look somewm swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		spitfire)

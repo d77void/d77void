@@ -1,6 +1,5 @@
 -- somewm 2.0 removed awful.util; lain/vicious still need it
 package.loaded["awful.util"] = package.loaded["awful.util"] or require("awful_util_compat")
-local appmenu = require("appmenu")
 local lain = require("lain")
 local vicious = require("vicious")
 -- If LuaRocks is installed, make sure that packages installed through it are
@@ -99,6 +98,20 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
+-- awesome-appmenu always writes to ~/.config/awesome/appmenu.lua, which
+-- somewm does not read; load it from there and fall back to the bundled copy
+local appmenu_file = os.getenv("HOME") .. "/.config/awesome/appmenu.lua"
+local appmenu_icon = '/usr/share/icons/Papirus-Dark/16x16/categories/applications-system.svg'
+
+local function load_appmenu()
+    local chunk = loadfile(appmenu_file)
+    local ok, generated = pcall(chunk or error)
+    if ok and type(generated) == "table" and generated.Appmenu then
+        return generated.Appmenu
+    end
+    return require("appmenu").Appmenu
+end
+
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
@@ -109,7 +122,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Applications", appmenu.Appmenu, '/usr/share/icons/Papirus-Dark/16x16/categories/applications-system.svg' },
+                                    { "Applications", load_appmenu(), appmenu_icon },
 				    { "Terminal", terminal, '/usr/share/icons/Papirus-Dark/16x16/categories/terminal.svg' },
 				    { "Files", "pcmanfm", '/usr/share/icons/Papirus-Dark/16x16/categories/pcmanfm-qt.svg' },
 				    { "Web", "brave-browser-stable", '/usr/share/icons/Papirus-Dark/16x16/categories/web-browser.svg' },
@@ -743,5 +756,9 @@ awful.spawn.with_shell("~/./.auto.sh")
 -- }}}
 
 -- {{{ Importing appmenu module
-awful.spawn.with_shell("awesome-appmenu -n")
+-- Regenerate the applications menu and swap it into the main menu
+awful.spawn.easy_async("awesome-appmenu -n", function()
+    mymainmenu:delete(2)
+    mymainmenu:add({ "Applications", load_appmenu(), appmenu_icon }, 2)
+end)
 -- }}}
