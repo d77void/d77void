@@ -114,6 +114,11 @@ spitfire.autostart({
 "dunst",
 "udiskie -a",
 "qsd77 run -c utumno",
+-- Idle: lock with Utumno's lock screen (as Mod4+z) after 5 minutes without
+-- input, and before suspending. "locker" only locks, never unlocks. Needs
+-- spitfire with ext-idle-notify (after 0.5.2); turning the screen off is
+-- not there yet.
+"swayidle -w timeout 300 'qsd77 -c utumno locker' before-sleep 'qsd77 -c utumno locker'",
 "pipewire",
 "/usr/libexec/polkit-mate-authentication-agent-1",
 "xdg-user-dirs-update",
