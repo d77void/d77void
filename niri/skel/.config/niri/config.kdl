@@ -371,7 +371,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return { spawn "kitty"; }
-    Mod+B { spawn "brave-browser-stable"; }
+    Mod+B { spawn "d77-browser"; }
     Mod+D { spawn "fuzzel"; }
     Mod+N { spawn "nwggrid"; }
     Mod+O { spawn "d77run"; }

@@ -43,7 +43,7 @@
       <action name="Execute" command="swaylock"/>
     </keybind>
     <keybind key="W-w">
-      <action name="Execute" command="brave-browser-stable"/>
+      <action name="Execute" command="d77-browser"/>
     </keybind>
     <keybind key="W-x">
       <action name="Execute" command="rofi -show power-menu -modi power-menu:rofi-power-menu"/>

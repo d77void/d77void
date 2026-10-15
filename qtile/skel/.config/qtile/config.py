@@ -137,7 +137,7 @@ keys = [
     Key([mod], "p", lazy.function(dynamic_screen)),
     Key([mod], "x", lazy.function(dynamic_power)),
     Key([mod], "y", lazy.spawn("slock"), desc="screen locker"),
-    Key([mod], "w", lazy.spawn("brave-browser-stable"), desc="Web browser"),
+    Key([mod], "w", lazy.spawn("d77-browser"), desc="Web browser"),
     Key([], "XF86AudioRaiseVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioLowerVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     Key([], "XF86AudioMute",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ toggle")),
@@ -158,7 +158,7 @@ for vt in range(1, 8):
 
 workspaces = [
     {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger'), Match(wm_class='geany')], "layout": "monadtall"},
-    {"name": " ", "key": "2", "matches": [Match(wm_class='librewolf'), Match(wm_class='qutebrowser'), Match(wm_class='brave-browser-stable'), Match(wm_class='org.gnome.Evolution-alarm-notify.desktop'), Match(wm_class='transmission-gtk.desktop'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='librewolf'), Match(wm_class='firefox'), Match(wm_class='qutebrowser'), Match(wm_class='brave-browser-stable'), Match(wm_class='org.gnome.Evolution-alarm-notify.desktop'), Match(wm_class='transmission-gtk.desktop'), Match(wm_class='geary')], "layout": "max"},
     {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='deadbeef'),  Match(wm_class='cmus')], "layout": "monadtall"},
     {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp,desktop'), Match(wm_class='Gnumeric')], "layout": "max"},
     {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},

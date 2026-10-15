@@ -4,7 +4,7 @@
 
 #Define default applications to be sourced by default_apps
 TERM=kitty          #Tag 1
-BROWSER=brave       #Tag 2
+BROWSER=d77-browser       #Tag 2
 DOC=libreoffice     #Tag 3
 FILE=dolphin        #Tag 4
 PLAYER=vlc          #Tag 5

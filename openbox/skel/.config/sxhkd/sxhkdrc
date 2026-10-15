@@ -19,6 +19,6 @@ alt + p
 alt + r
 	d77run
 alt + w
-	brave-browser-stable
+	d77-browser
 alt + x
 	rofi -show power-menu -modi power-menu:rofi-power-menu

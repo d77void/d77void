@@ -63,7 +63,7 @@
         </menu>
         <menu id="5" label="Network">
             <item label="Brave"> <action name="Execute">
-                <execute>brave-browser-stable</execute>
+                <execute>d77-browser</execute>
             </action> </item>
             <item label="Geary"> <action name="Execute">
                 <execute>geary</execute>

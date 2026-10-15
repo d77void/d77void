@@ -210,6 +210,9 @@ _include_base() {
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
 	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
+	# Key bindings and menus open the browser through d77-browser, which
+	# runs whichever one the image has (Brave, LibreWolf or Firefox).
+	install -m755 ./common/d77-browser "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/90-udisks-ignore-loop.rules "$INCLUDEDIR"/etc/udev/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
@@ -763,6 +766,15 @@ EOF
 	[ "$WAY" = yes ]     && include_way
 	[ "$XFCE" = yes ]    && include_xfce
 	[ "$X11" = yes ]     && include_x11
+
+	# Panel and dock favourites name Brave's .desktop file, which musl builds
+	# don't have: point them at Firefox's (as include_plasma does for
+	# LibreWolf). Key bindings and menus use d77-browser instead.
+	if [ -n "$MUSL" ]; then
+		grep -rlZ -e 'brave-browser\.desktop' -e '"brave-browser"' "$INCLUDEDIR"/etc 2>/dev/null |
+			xargs -0 -r sed -i -e 's/brave-browser\.desktop/firefox.desktop/g' \
+				-e 's/"brave-browser"/"firefox"/g'
+	fi
 
 	case "$TEXT_EDITOR" in
 		"") ;;

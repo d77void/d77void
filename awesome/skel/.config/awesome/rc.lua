@@ -97,7 +97,7 @@ mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesom
                                     { "Applications", appmenu.Appmenu, '/usr/share/icons/Papirus-Dark/16x16/categories/applications-system.svg' },
 				    { "Terminal", terminal, '/usr/share/icons/Papirus-Dark/16x16/categories/terminal.svg' },
 				    { "Files", "pcmanfm", '/usr/share/icons/Papirus-Dark/16x16/categories/pcmanfm-qt.svg' },
-				    { "Web", "brave-browser-stable", '/usr/share/icons/Papirus-Dark/16x16/categories/web-browser.svg' },
+				    { "Web", "d77-browser", '/usr/share/icons/Papirus-Dark/16x16/categories/web-browser.svg' },
 				    { "Mail", "geary", '/usr/share/icons/Papirus-Dark/16x16/categories/mail-client.svg' }
                                   }
                         })

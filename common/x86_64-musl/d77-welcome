@@ -174,8 +174,8 @@ STEPS = [
                 "id": "install-firefox",
                 "title": "Firefox",
                 "summary": (
-                    "d77void ships with brave-browser, a privacy-focused "
-                    "web browser. Install Firefox as well?"
+                    "d77void ships with Firefox, a privacy-focused web "
+                    "browser. Install it again if it was removed?"
                 ),
                 "packages": ["firefox"],
                 "script": "install-firefox",

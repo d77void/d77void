@@ -7,7 +7,7 @@ appmenu.Accessories = {
 }
 
 appmenu.Internet = {
-    { 'Brave Web Browser', '/usr/bin/brave-browser-stable' },
+    { 'Brave Web Browser', 'd77-browser' },
     { 'Geary', 'geary' },
     { 'Transmission (Qt)', 'transmission-qt' },
     { 'uGet', 'env GDK_BACKEND=x11 uget-gtk' },

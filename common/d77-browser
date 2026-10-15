@@ -1,0 +1,9 @@
+#!/bin/sh
+# d77-browser: opens the image's web browser, whichever it is (Brave on
+# glibc builds, Firefox on musl ones, LibreWolf on Plasma), so key bindings
+# and menus work the same on every build. Arguments go to the browser.
+for b in brave-browser-stable librewolf firefox chromium; do
+	command -v "$b" >/dev/null 2>&1 && exec "$b" "$@"
+done
+echo "d77-browser: no web browser installed (brave, librewolf, firefox, chromium)" >&2
+exit 1
