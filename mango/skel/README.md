@@ -28,9 +28,17 @@ alt + backslash -> toggle floating
 
 super + left / right -> switch workspace
 
+super + t -> lock screen
+
 super + x -> powermenu
 
 super + m -> quit mango
+
+## Idle
+
+After 5 minutes without input the screen locks (swaylock), after 10 it
+turns off, and it always locks before suspending (swayidle, started from
+config.conf).
 
 ## Mango tweaks
 
