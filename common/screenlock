@@ -1,5 +1,9 @@
 #!/bin/sh
- exec swayidle -w \
-          timeout 300 swaylock \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep swaylock 
+# Idle lock for the niri, river and somewm variants: swaylock after 5
+# minutes, screen off after 10 and back on with any input, lock before
+# suspending. The screen goes off with wlopm (wlr-output-power-management),
+# not swaymsg, which only works on Sway.
+exec swayidle -w \
+	timeout 300 swaylock \
+	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
+	before-sleep swaylock

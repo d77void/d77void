@@ -599,7 +599,7 @@ build_variant() {
 			WAY=yes
 			NIRI=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty mate-polkit niri-d77 qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty mate-polkit niri-d77 qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk wlopm"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-dms)
@@ -657,7 +657,7 @@ build_variant() {
 			RIVER=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty mate-polkit qt5-wayland qt6-wayland river river-bedload river-shifttags swaybg swayidle swayimg swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty mate-polkit qt5-wayland qt6-wayland river river-bedload river-shifttags swaybg swayidle swayimg swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr wlopm"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		scroll)
@@ -671,7 +671,7 @@ build_variant() {
 			COMMON=yes
 			GREETD=yes
 			NIRI=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty d77-awesome-appmenu dunst fuzzel mate-polkit nwg-look somewm swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty d77-awesome-appmenu dunst fuzzel mate-polkit nwg-look somewm swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset wlopm"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		spitfire)
