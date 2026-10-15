@@ -144,6 +144,16 @@ wasp.autostart = {
 { "udiskie", "-a" },
 { "pipewire" },
 { "sh", "-c", "qsd77 run -c utumno" },
+-- Idle: lock with Utumno's lock screen (the same as super+t) after 5
+-- minutes, screen off after 5.5 and back on with any input, and lock
+-- before suspending. "locker" only locks (never unlocks), so running it
+-- again while locked is harmless. wasp provides ext-idle-notify (for
+-- swayidle), idle-inhibit (a full-screen video keeps it awake) and
+-- wlr-output-power-management (for wlopm).
+{ "swayidle", "-w",
+  "timeout", "300", "qsd77 -c utumno locker",
+  "timeout", "330", "wlopm --off '*'", "resume", "wlopm --on '*'",
+  "before-sleep", "qsd77 -c utumno locker" },
 { "/usr/libexec/polkit-mate-authentication-agent-1" },
 { "sh", "-c", "xdg-user-dirs-update" },
 { "sh", "-c", "xdg-user-dirs-gtk-update" },

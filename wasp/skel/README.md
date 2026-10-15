@@ -49,6 +49,12 @@ alt + shift + r -> reload config
 
 alt + shift + q -> quit wasp
 
+## Idle
+
+After 5 minutes without input the screen locks (Utumno's lock screen, as
+super + t), after 5.5 it turns off, and it always locks before suspending
+(swayidle and wlopm, started from wasp.autostart in config.lua).
+
 ## wasp tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout
