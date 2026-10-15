@@ -16,7 +16,7 @@ super + comma -> settings
 
 super + alt + l -> lock screen
 
-super + n -> clipboard
+super + v -> clipboard
 
 super + x -> session menu
 
@@ -27,6 +27,12 @@ super + shift + e -> logout
 super + q -> close window
 
 super + d -> toggle overview
+
+print -> region screenshot
+
+ctrl + print -> full screen screenshot
+
+volume/media keys -> handled by Noctalia
 
 ## niri tweaks
 

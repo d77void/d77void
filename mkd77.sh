@@ -611,7 +611,7 @@ build_variant() {
 		niri-noctalia)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		openbox)

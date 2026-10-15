@@ -38,6 +38,26 @@ binds {
        spawn "noctalia" "msg" "brightness-down";
     }
 
+    // === Audio Controls ===
+    XF86AudioRaiseVolume allow-when-locked=true {
+       spawn "noctalia" "msg" "volume-up" "5";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+       spawn "noctalia" "msg" "volume-down" "5";
+    }
+    XF86AudioMute allow-when-locked=true {
+       spawn "noctalia" "msg" "volume-mute";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+       spawn "noctalia" "msg" "mic-mute";
+    }
+
+    // === Media Controls ===
+    XF86AudioPlay allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioPause allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+
     // === Window Management ===
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
@@ -167,7 +187,10 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // === Screenshots ===
-    XF86Launch1 { spawn "noctalia" "msg" "screenshot-fullscreen"; }
+    Print hotkey-overlay-title="Screenshot: Region" { spawn "noctalia" "msg" "screenshot-region"; }
+    Ctrl+Print hotkey-overlay-title="Screenshot: Full Screen" { spawn "noctalia" "msg" "screenshot-fullscreen"; }
+    XF86Launch1 hotkey-overlay-title="Screenshot: Region" { spawn "noctalia" "msg" "screenshot-region"; }
+    Ctrl+XF86Launch1 hotkey-overlay-title="Screenshot: Full Screen" { spawn "noctalia" "msg" "screenshot-fullscreen"; }
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
