@@ -271,8 +271,6 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
 
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("nwggrid"))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("grim"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("d77run"))
 
 -- closeWindowBind:set_enabled(false)
@@ -319,6 +317,10 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("noctalia msg media next"), { locked =
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("noctalia msg media toggle"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("noctalia msg media toggle"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("noctalia msg media previous"), { locked = true })
+
+-- Screenshots
+hl.bind("Print",        hl.dsp.exec_cmd("noctalia msg screenshot-region"))
+hl.bind("CTRL + Print", hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen"))
 
 
 --------------------------------

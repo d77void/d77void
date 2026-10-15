@@ -32,6 +32,12 @@ super + q -> close window
 
 alt + m -> quit mango
 
+print -> region screenshot
+
+ctrl + print -> full screen screenshot
+
+alt + print -> window screenshot
+
 ## Mango tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/mango/config.conf and the files inside ~/.config/mango/dms/ ; the files are self explanatory and with several examples already configured.

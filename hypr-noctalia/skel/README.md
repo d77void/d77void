@@ -26,6 +26,10 @@ super + r -> d77run
 
 super + q -> close window
 
+print -> region screenshot
+
+ctrl + print -> full screen screenshot
+
 ## Hyprland tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/hypr/hyprland.lua ; the file is self explanatory and with several examples already configured.
