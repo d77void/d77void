@@ -553,7 +553,7 @@ build_variant() {
 			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt mate-polkit qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt mate-polkit qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock wlopm xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		leftwm)

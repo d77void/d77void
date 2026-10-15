@@ -55,10 +55,12 @@
   </keyboard>
   <mouse>
     <default/>
-    <!-- Show a custom menu on desktop right click -->
+    <!-- Right click on the desktop: the applications menu, root-menu in
+         menu.xml (rebuilt on every login by ~/.lmu with
+         labwc-menu-generator) -->
     <context name="Root">
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu" menu="some-custom-menu"/>
+        <action name="ShowMenu" menu="root-menu"/>
       </mousebind>
     </context>
   </mouse>
