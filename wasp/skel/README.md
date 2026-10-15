@@ -15,7 +15,7 @@ alt + shift + return -> terminal
 
 alt + p -> menu
 
-alt + comma -> scratchpad terminal
+alt + grave (`) -> scratchpad terminal
 
 alt + j / alt + k -> focus next/previous window
 

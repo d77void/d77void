@@ -314,7 +314,7 @@ bind({ "mod", "shift" }, "k", "movestack", { dir = -1 })
 
 -- Scratchpad -- pairs with the wasp.scratchpad slot above; uncomment both
 -- together. Backtick/grave is the common drop-down-terminal convention.
-bind({ "mod" }, "comma", "toggle-scratchpad", { name = "term" })
+bind({ "mod" }, "grave", "toggle-scratchpad", { name = "term" })
 
 -- Resize
 bind({ "mod" }, "i", "incnmaster", { dir = 1 })
