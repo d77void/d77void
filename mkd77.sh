@@ -517,7 +517,7 @@ build_variant() {
 			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES azote cliphist hyprland hyprland-guiutils hyprlock hyprpaper hyprsunset hyprutils kitty libinput-hypr hyprpolkitagent qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES azote cliphist hyprland hyprland-guiutils hypridle hyprlock hyprpaper hyprsunset hyprutils kitty libinput-hypr hyprpolkitagent qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-dms)
