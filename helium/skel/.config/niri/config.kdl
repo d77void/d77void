@@ -195,6 +195,7 @@ environment {
   QT_QPA_PLATFORMTHEME_QT6 "gtk3"
   TERMINAL "kitty"
 }
+spawn-at-startup "pipewire"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "xdg-user-dirs-update"
 spawn-at-startup "xdg-user-dirs-gtk-update"
