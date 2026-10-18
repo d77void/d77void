@@ -197,7 +197,7 @@ environment {
 }
 spawn-at-startup "pipewire"
 spawn-at-startup "udiskie" "-at"
-spawn-at-startup "noctalia" "run"
+spawn-at-startup "noctalia"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "xdg-user-dirs-update"
 spawn-at-startup "xdg-user-dirs-gtk-update"
