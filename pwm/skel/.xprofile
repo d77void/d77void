@@ -1,0 +1,3 @@
+# Sourced by the SDDM Xsession script before pwm starts.
+# pwm does not run XDG autostart, so start pipewire here.
+pipewire &
