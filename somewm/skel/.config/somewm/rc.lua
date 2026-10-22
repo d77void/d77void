@@ -306,8 +306,16 @@ s.mytaglist = awful.widget.taglist {
     }
 
 --wifi
+-- Detect the wireless interface instead of hardcoding it (differs per machine)
+local wifi_iface = "wlan0"
+local ifaces = io.popen("ls -d /sys/class/net/*/wireless 2>/dev/null")
+if ifaces then
+    local first = ifaces:read("*l")
+    ifaces:close()
+    wifi_iface = first and first:match("/sys/class/net/([^/]+)/wireless") or wifi_iface
+end
 wifiwidget = wibox.widget.textbox()
-vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate}Mb/s", 1, "wlp0s20f3")
+vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate}Mb/s", 1, wifi_iface)
 
 -- Weather
 	wthwidget = wibox.widget.textbox()
@@ -450,7 +458,7 @@ globalkeys = gears.table.join(
               {description = "open Fuzzel menu", group = "d77"}),
     awful.key({ modkey,           }, "z", function () awful.spawn("fuzzel-power-menu") end,
               {description = "open Fuzzel power menu", group = "d77"}),
-    awful.key({ modkey,           }, "l", function () awful.spawn("swaylock") end,
+    awful.key({ modkey, "Mod1"    }, "l", function () awful.spawn("swaylock") end,
               {description = "lock screen", group = "d77"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
