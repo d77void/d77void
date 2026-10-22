@@ -192,21 +192,35 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        -- gears.wallpaper was removed in somewm 2.0; use awful.wallpaper
+        -- gears.wallpaper was removed in somewm 2.0; use awful.wallpaper.
+        -- Since 2.1 the imagebox ignores fit policies and always keeps the
+        -- aspect ratio (letterboxing), so force a size that covers the
+        -- screen and let the place container centre and crop it.
+        local surf = gears.surface.load_uncached(wallpaper)
+        local iw, ih = gears.surface.get_size(surf)
+        local g = s.geometry
+        local scale = math.max(g.width / iw, g.height / ih)
         awful.wallpaper {
             screen = s,
             widget = {
-                image     = wallpaper,
-                resize    = true,
-                upscale   = true,
-                downscale = true,
-                horizontal_fit_policy = "fit",
-                vertical_fit_policy   = "fit",
-                widget    = wibox.widget.imagebox,
+                {
+                    image         = surf,
+                    upscale       = true,
+                    downscale     = true,
+                    forced_width  = math.ceil(iw * scale),
+                    forced_height = math.ceil(ih * scale),
+                    widget        = wibox.widget.imagebox,
+                },
+                valign = "center",
+                halign = "center",
+                widget = wibox.container.place,
             },
         }
     end
 end
+
+-- Redo the wallpaper when a screen changes resolution
+screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -321,7 +335,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 28, stretch = "false", margins = { top = 15, left = 15, right =15,}, ontop = true, shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end, bg = "#1e1e2ecc", })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 28, stretch = "false", margins = { top = 15, left = 15, right =15,}, shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end, bg = "#1e1e2ecc", })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
