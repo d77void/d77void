@@ -3,7 +3,8 @@
 -- or of dms/*.lua doesn't lose them, and so they override DMS defaults.
 
 -- Session services. The compositor doesn't run XDG autostart, so pipewire
--- has to be spawned here; dms itself is started from the DMS_STARTUP block.
+-- has to be spawned here; dms itself is started from the DMS_STARTUP block
+-- in hyprland.lua.
 hl.on("hyprland.start", function()
 	hl.exec_cmd("pipewire")
 	hl.exec_cmd("udiskie -at")
@@ -47,4 +48,11 @@ hl.window_rule({
 hl.window_rule({ name = "d77run", match = { class = "^(d77run)$" }, float = true })
 hl.window_rule({ name = "qt-sudo", match = { class = "^(qt-sudo)$" }, float = true })
 hl.window_rule({ name = "nmtui-float", match = { class = "^(nmtui-float)$" }, float = true })
-hl.window_rule({ match = { class = "^(org\\.quickshell)$" }, float = true })
+-- DMS dialogs (settings, process list, ...) float; DMS 2 uses the
+-- dev.duxlabs.shell app id, older releases com.danklinux.dms
+hl.window_rule({ match = { class = "^(dev\\.duxlabs\\.shell|com\\.danklinux\\.dms)$" }, float = true })
+
+-- Layout tweaks kept out of dms/layout.lua, which DMS regenerates from its
+-- settings
+hl.config({ general = { resize_on_border = false } })
+hl.layer_rule({ match = { namespace = "^dms:bar$" }, xray = true })

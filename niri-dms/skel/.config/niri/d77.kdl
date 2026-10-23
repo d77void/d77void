@@ -1,0 +1,26 @@
+// d77void additions on top of the DMS-generated config.kdl. `dms setup`
+// rewrites config.kdl (keeping a .backup copy) but never touches this file;
+// if the d77 autostart or binds go missing after a setup, add
+// `include "d77.kdl"` back at the end of config.kdl.
+
+// Session services. niri doesn't run XDG autostart here, so pipewire and
+// friends are spawned explicitly; dms itself is started from config.kdl.
+spawn-at-startup "pipewire"
+spawn-at-startup "udiskie" "-at"
+spawn-at-startup "dcal" "run" "--session" "--hidden"
+spawn-at-startup "xdg-user-dirs-update"
+spawn-at-startup "xdg-user-dirs-gtk-update"
+spawn-at-startup "~/./.auto.sh"
+
+window-rule {
+    match app-id=r#"^qt-sudo$"#
+    match app-id=r#"^d77run$"#
+    match app-id=r#"^nmtui-float$"#
+    open-floating true
+}
+
+// DMS puts the overview on both Mod+Tab and Mod+O; keep Mod+Tab for it and
+// give Mod+O to d77run.
+binds {
+    Mod+O hotkey-overlay-title="Run Dialog" { spawn "d77run"; }
+}

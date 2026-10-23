@@ -5,38 +5,6 @@
 config-notification {
     disable-failed
 }
-// Outputs from existing configuration
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
-}
-
 
 gestures {
     hot-corners {
@@ -84,13 +52,18 @@ input {
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
 }
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-
+/-output "eDP-2" {
+    mode "2560x1600@239.998993"
+    position x=2560 y=0
+    variable-refresh-rate
+}
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
@@ -169,13 +142,7 @@ environment {
   QT_QPA_PLATFORMTHEME_QT6 "gtk3"
   TERMINAL "kitty"
 }
-spawn-at-startup "pipewire"
-spawn-at-startup "udiskie" "-at"
 spawn-at-startup "dms" "run"
-spawn-at-startup "dcal" "run" "--session" "--hidden"
-spawn-at-startup "xdg-user-dirs-update"
-spawn-at-startup "xdg-user-dirs-gtk-update"
-spawn-at-startup "~/./.auto.sh"
 hotkey-overlay {
     skip-at-startup
 }
@@ -240,13 +207,9 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^org\.gnome\.Calculator$"#
-    match app-id=r#"^qt-sudo$"#
-    match app-id=r#"^d77run$"#
-    match app-id=r#"^nmtui-float$"#
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
     match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^org\.gnome\.Nautilus$"#
     match app-id=r#"^xdg-desktop-portal$"#
     open-floating true
 }
@@ -266,12 +229,6 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
-    open-floating true
-}
-// Open dms windows as floating by default
-window-rule {
-    match app-id=r#"org.quickshell$"#
-    match app-id=r#"com.danklinux.dms$"#
     open-floating true
 }
 debug {
@@ -297,12 +254,8 @@ include optional=true "dms/outputs.kdl"
 include optional=true "dms/cursor.kdl"
 include optional=true "dms/input.kdl"
 include optional=true "dms/windowrules.kdl"
-include "dms/wpblur.kdl"
+include optional=true "dms/wpblur.kdl"
 
-// d77void overrides, kept after the dms includes so they win over the
-// DMS-generated binds: DMS puts the overview on Mod+Tab and Mod+O; keep
-// Mod+Tab, add Mod+D for it and give Mod+O to d77run
-binds {
-    Mod+D repeat=false hotkey-overlay-title="Overview" { toggle-overview; }
-    Mod+O hotkey-overlay-title="Run Dialog" { spawn "d77run"; }
-}
+// d77void additions (autostart, extra window rules, binds). Kept in their
+// own file so `dms setup` rewriting this config only drops this one line.
+include "d77.kdl"
