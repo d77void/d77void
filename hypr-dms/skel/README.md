@@ -12,6 +12,8 @@ super + t / super + return -> terminal
 
 super + space -> app launcher
 
+alt + space -> spotlight bar
+
 super + comma -> settings
 
 super + a -> control center
@@ -21,6 +23,8 @@ super + d -> dash
 super + m -> media
 
 super + n -> notepad
+
+super + shift + n -> notepad (expanded)
 
 super + ctrl + n -> notifications
 
@@ -38,9 +42,13 @@ super + shift + c -> color picker
 
 super + alt + n -> night mode
 
+super + alt + i -> idle inhibit
+
 super + alt + l -> lock screen
 
 super + q -> close window
+
+super + shift + w -> window rules
 
 print -> region screenshot
 
@@ -51,6 +59,8 @@ alt + print -> window screenshot
 super + shift + / -> keybinds cheat sheet
 
 super + tab -> overview
+
+super + alt + r -> rename workspace
 
 super + s -> scratchpad
 
