@@ -636,7 +636,7 @@ build_variant() {
 			COMMON=yes
 			X11=yes
 			SDDM=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf fresh-editor gettext git d77run htop inxi joshuto kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf fresh-editor gettext git d77run htop inxi joshuto kantele kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		qsd77)
@@ -688,7 +688,7 @@ build_variant() {
 			# by the spitfire package) routes the Secret portal to
 			# gnome-keyring explicitly, so that's a hard requirement, not
 			# just a nice-to-have.
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland spitfire swayidle upower utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xorg-server-xwayland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring kantele mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland spitfire swayidle upower utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xorg-server-xwayland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		sway)
@@ -711,7 +711,7 @@ build_variant() {
 			# ScreenCast/Screenshot to wlr explicitly, hence
 			# xdg-desktop-portal-wlr below. wmenu provides wmenu-run,
 			# wasp.menu's default in config.lua.
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland swayidle upower utumno wasp wayland-devel wayland-protocols wireless_tools wlopm wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring kantele mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland swayidle upower utumno wasp wayland-devel wayland-protocols wireless_tools wlopm wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		wayfire)
