@@ -17,7 +17,7 @@ binds {
 
     // === Security ===
     Mod+Alt+L hotkey-overlay-title="Lock Screen" {
-        spawn "hyprlock";
+        spawn "amorphis" "--backend" "wayland" "--effect" "blur";
     }
     Mod+Shift+E { quit; }
 
