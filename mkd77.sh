@@ -346,6 +346,13 @@ include_way() {
 	cp -r ./common/waybar "$INCLUDEDIR"/etc/skel/.config/
 }
 
+include_wmd77() {
+	# polybar (include_poly) in place of wmd77's built-in bar
+	mkdir -p "$INCLUDEDIR"/etc/skel/.config/wmd77
+	cp ./common/wmd77/config.toml "$INCLUDEDIR"/etc/skel/.config/wmd77/
+	cp -p ./common/wmd77/startup.sh "$INCLUDEDIR"/etc/skel/.config/wmd77/
+}
+
 include_x11() {
 	PKGS="$PKGS dunst redshift scrot d77-slock d77-st transset xautolock xcompmgr xterm"
 	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
@@ -410,6 +417,7 @@ build_variant() {
 			FUZZEL=
 			RIVER=
 			ROFI=
+			WMD77=
 			;;
 		aarch64*)
 			GRUB_PKGS="grub-arm64-efi"
@@ -723,9 +731,11 @@ build_variant() {
 		wmd77)
 			TEXT_EDITOR=fresh.desktop
 			COMMON=yes
+			POLY=yes
+			WMD77=yes
 			X11=yes
 			SDDM=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf fresh-editor gettext git d77run htop inxi joshuto kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber wmd77 xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf fresh-editor gettext git d77run htop inxi joshuto kantele kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber wmd77 xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		xfce)
@@ -764,6 +774,7 @@ EOF
 	[ "$RIVER" = yes ]   && include_river
 	[ "$ROFI" = yes ]    && include_rofi
 	[ "$WAY" = yes ]     && include_way
+	[ "$WMD77" = yes ]   && include_wmd77
 	[ "$XFCE" = yes ]    && include_xfce
 	[ "$X11" = yes ]     && include_x11
 

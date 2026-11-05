@@ -1,0 +1,10 @@
+# wmd77 settings for d77void: polybar instead of wmd77's built-in bar.
+# Every option, with comments: /usr/share/wmd77/config.toml.example
+
+[apps]
+startup_script = "~/.config/wmd77/startup.sh"
+
+[bar]
+enable = false
+# polybar's [bar/wmd77] is 48 px tall (38 + its border)
+reserve_top = 48
