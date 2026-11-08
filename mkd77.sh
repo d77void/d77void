@@ -42,6 +42,8 @@ usage() {
 	EOH
 }
 
+ORIG_ARGS=("$@")
+
 # Pre-process long options before getopts
 _args=()
 for _arg in "$@"; do
@@ -67,6 +69,31 @@ case $opt in
 esac
 done
 shift $((OPTIND - 1))
+
+# Keep the build away from the host's boot files. mklive.sh installs
+# memtest86+ into a helper root that has no /bin/sh, so XBPS runs the
+# package's post-install script on the host, and that script runs the host's
+# grub-mkconfig on /boot/grub/grub.cfg (os-prober included). Run the whole
+# build in a private mount namespace with an empty tmpfs over /boot: the
+# script then finds no /boot/grub and does nothing. Build mounts also stay
+# inside the namespace.
+if [ -z "${D77_BUILD_NS:-}" ]; then
+	if [ "$(id -u)" -ne 0 ]; then
+		echo "$PROGNAME: must be run as root" >&2
+		exit 1
+	fi
+	grubcfg_state() { stat -c '%Y %s' /boot/grub/grub.cfg 2>/dev/null || echo absent; }
+	before=$(grubcfg_state)
+	rc=0
+	D77_BUILD_NS=1 unshare --mount --propagation private -- \
+		sh -c 'mount -t tmpfs -o mode=0755,size=16m tmpfs /boot && exec "$0" "$@"' \
+		"$0" "${ORIG_ARGS[@]+"${ORIG_ARGS[@]}"}" || rc=$?
+	if [ "$(grubcfg_state)" != "$before" ]; then
+		echo "$PROGNAME: ERROR: the host's /boot/grub/grub.cfg changed during the build" >&2
+		rc=1
+	fi
+	exit $rc
+fi
 
 # Architecture-dependent globals (set once, used by include_* functions)
 if [ -n "$MUSL" ]; then
