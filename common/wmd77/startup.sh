@@ -9,6 +9,6 @@ dunst &
 udiskie -a &
 xcompmgr -c -f -n &
 xautolock -time 5 -locker slock &
-redshift -l 41.16:-8.62 &
+redshift -P -l 41.16:-8.62 &
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 polybar wmd77 &

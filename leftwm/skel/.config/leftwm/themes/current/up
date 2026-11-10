@@ -22,7 +22,7 @@ fi
 
 xcompmgr -c -f -n &
 exec dunst &
-redshift -l 41.6:-8.62 &
+redshift -P -l 41.16:-8.62 &
 xautolock -time 15 - locker slock &
 udiskie -a &
 synclient TapButton1=1 &

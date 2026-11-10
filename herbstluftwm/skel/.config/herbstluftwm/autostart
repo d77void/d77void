@@ -22,7 +22,7 @@ udiskie -at &
 octoxbps-notifier &
 nm-applet &
 cbatticon &
-redshift-gtk -l 41.6:-8.62  &
+redshift-gtk -P -l 41.16:-8.62 &
 xautolock -time 5 -locker slock &
 xdg-user-dirs-update &
 xdg-user-dirs-gtk-update &

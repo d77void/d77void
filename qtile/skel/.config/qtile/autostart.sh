@@ -12,7 +12,7 @@ swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
           before-sleep 'swaylock -f -c 000000' &
-redshift -l 41.6:-8.62 -t 6500:4000 &
+redshift -P -l 41.16:-8.62 -t 6500:4000 &
 wlsunset -l 41.16 -L -8.62 -T 6500 -t 4000 &
 synclient TapButton1=1 &
 synclient TapButton2=3 &

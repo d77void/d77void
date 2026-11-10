@@ -13,7 +13,7 @@ exec /usr/libexec/polkit-mate-authentication-agent-1 &
 exec xcompmgr -c -f -n &
 
 # nightshift for Oporto, Portugal location
-exec redshift -l 41.6:-8.62 & 
+exec redshift -P -l 41.16:-8.62 &
 
 # keybind mapper
 exec sxhkd -c ~/.config/sxhkd/sxhkdrc &

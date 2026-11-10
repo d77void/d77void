@@ -23,7 +23,7 @@ dunst &
 cbatticon &
 volumeicon &
 nm-applet &
-#redshift-gtk -l 41.6:-8.62 &
+#redshift-gtk -P -l 41.16:-8.62 &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &

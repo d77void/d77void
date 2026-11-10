@@ -80,7 +80,7 @@ myStartupHook = do
   spawnOnce "xcompmgr -c -f -n"
   spawnOnce "dunst"
   spawnOnce "udiskie -a"
-  spawnOnce "redshift -l 41.6:-8.62 -t 5700:3500 -g 0.8"
+  spawnOnce "redshift -P -l 41.16:-8.62 -t 5700:3500 -g 0.8"
   spawnOnce "xautolock -time 5 -locker slock"
 
 myXmobarPP :: PP
