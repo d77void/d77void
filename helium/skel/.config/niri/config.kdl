@@ -204,9 +204,8 @@ spawn-at-startup "hypridle"
 spawn-at-startup "hyprsunset"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "udiskie" "-a"
-spawn-at-startup "helium-shell"
-spawn-at-startup "helium-osd"
-spawn-at-startup "helium-backdrop"
+// The bar (with its OSD, launcher and session menu) and the backdrop.
+spawn-at-startup "helium" "start"
 spawn-at-startup "sh" "-c" "helium-wallpaper --startup"
 hotkey-overlay {
     skip-at-startup
