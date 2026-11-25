@@ -10,9 +10,19 @@ Rust apps.
 
 ## Side Note
 
-The config files for startup programs and info on the bar are available at /etc/xdg/wmd77/ ;
+The bar is ATG (At the Gates), a Quickshell shell for Xorg: launcher, workspaces,
+weather, wallpaper picker, session menu and volume/brightness OSD. The screen is
+locked with Amorphis, which amorphis-idle also starts after 5 minutes idle.
 
-If you want to dig more on the WM configurations, download a tarball from Github or clone the repository 
+Your settings live in ~/.config/wmd77/ (config.toml and startup.sh) and
+~/.config/amorphis/. Every wmd77 option, with comments, is in
+/usr/share/wmd77/config.toml.example; Kantele also edits them from a GUI.
+
+The keyboard layout is left as the X server sets it up. To change it, add a
+[keyboard] section to ~/.config/wmd77/config.toml (for example layout = "pt")
+and press super + shift + r.
+
+If you want to dig more on the WM configurations, download a tarball from Github or clone the repository
 https://github.com/dani-77/wmd77 and play with it.
 
 ## Installer
@@ -31,29 +41,33 @@ By default:
 
 super + return -> st (terminal)
 
-super + a -> rofi
-
-super + b -> swap wallpaper
-
-super + d -> dmenu
-
-super + j/k -> swap focused window
-
-super + m -> change layout
-
-super + p -> scrot
-
-super + q -> kill focused window
+super + d -> ATG launcher
 
 super + r -> d77run
 
+super + y -> wallpaper picker
+
+super + x -> session menu
+
+super + l or super + t -> lock (Amorphis)
+
+super + j/k -> focus next/previous window
+
+super + shift + j/k -> swap focused window
+
+super + m -> change layout
+
+super + q -> kill focused window
+
 super + s -> scratchpad
 
-super + t -> lock
-
-super + x -> powermenu
+super + shift + r -> reload the config
 
 super + shift + q -> quit WM
+
+Print -> scrot
+
+Volume and brightness keys -> change the level and show the OSD
 
 ## Credits
 

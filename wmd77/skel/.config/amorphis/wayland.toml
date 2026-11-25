@@ -1,0 +1,12 @@
+# Copy to ${XDG_CONFIG_HOME:-$HOME/.config}/amorphis/wayland.toml.
+# Omit this file to use the embedded background.
+# Choose one source: image, capture, or solid.
+# Example PNG with pixelation:
+# image = "/path/to/wallpaper.png"
+# fit = "contain"
+# effect = "pixelate"
+# pixel_size = 16
+# Alternatively, capture the desktop if the compositor supports it:
+# capture = true
+# Or use only a solid colour:
+# solid = true

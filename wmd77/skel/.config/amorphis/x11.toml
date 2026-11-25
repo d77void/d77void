@@ -1,0 +1,13 @@
+# Copy to ${XDG_CONFIG_HOME:-$HOME/.config}/amorphis/x11.toml.
+# Omit this file to use the embedded background.
+# Choose one source: image, capture, or solid.
+# Example capture with effects:
+capture = true
+effect = "blur-pixelate"
+blur_radius = 16
+pixel_size = 16
+# Alternatively, use a PNG:
+# image = "/path/to/wallpaper.png"
+# fit = "cover"
+# Or use only a solid colour:
+# solid = true

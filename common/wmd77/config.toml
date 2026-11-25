@@ -1,10 +1,69 @@
-# wmd77 settings for d77void: polybar instead of wmd77's built-in bar.
+# wmd77 settings for d77void with the ATG bar.
 # Every option, with comments: /usr/share/wmd77/config.toml.example
 
 [apps]
+launcher = "qsd77 launcher -c atg"
 startup_script = "~/.config/wmd77/startup.sh"
+terminal = "st"
+locker = "amorphis"
 
 [bar]
 enable = false
-# polybar's [bar/wmd77] is 48 px tall (38 + its border)
+# ATG uses 40 px plus an 8 px top margin.
 reserve_top = 48
+
+[[bind]]
+key = "XF86AudioRaiseVolume"
+action = "spawn"
+arg = "qsd77 ipc call osd volumeUp -c atg"
+
+[[bind]]
+key = "XF86AudioLowerVolume"
+action = "spawn"
+arg = "qsd77 ipc call osd volumeDown -c atg"
+
+[[bind]]
+key = "XF86AudioMute"
+action = "spawn"
+arg = "qsd77 ipc call osd volumeMuteToggle -c atg"
+
+[[bind]]
+key = "XF86MonBrightnessUp"
+action = "spawn"
+arg = "qsd77 ipc call osd brightnessUp -c atg"
+
+[[bind]]
+key = "XF86MonBrightnessDown"
+action = "spawn"
+arg = "qsd77 ipc call osd brightnessDown -c atg"
+
+[[bind]]
+key = "M-y"
+action = "spawn"
+arg = "qsd77 wallpaper -c atg"
+
+[[bind]]
+key = "M-l"
+action = "spawn"
+arg = "amorphis"
+
+[[bind]]
+key = "M-x"
+action = "spawn"
+arg = "qsd77 session -c atg"
+
+[[bind]]
+key = "M-r"
+action = "spawn"
+arg = "d77run"
+
+# X11 also maps Print to keycode 107, which Penrose can grab as Sys_Req.
+[[bind]]
+key = "Sys_Req"
+action = "spawn"
+arg = "scrot"
+
+[[float_rule]]
+class = "d77run"
+width_ratio = 0.34
+height_ratio = 0.05

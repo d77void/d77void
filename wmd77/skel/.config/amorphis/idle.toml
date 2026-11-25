@@ -1,0 +1,21 @@
+# Copy to ${XDG_CONFIG_HOME:-$HOME/.config}/amorphis/idle.toml.
+# timeout is in seconds. Run amorphis-idle once at session startup.
+[[rule]]
+timeout = 300
+command_x11 = "amorphis"
+command_wayland = "kantele-shell lock"
+
+# Optional inhibition settings.
+# [inhibit]
+# Accept org.freedesktop.ScreenSaver requests on the session bus.
+# dbus = true
+# Use playerctl to detect playback in these MPRIS players.
+# players = ["mpv", "vlc"]
+
+# Instead, one rule may use a different command on each session:
+# [[rule]]
+# timeout = 900
+# command_x11 = "slock"
+# command_wayland = "kantele-locker"
+# resume_command runs when activity returns, possibly before unlock.
+# resume_command = "notify-send 'Session active'"
