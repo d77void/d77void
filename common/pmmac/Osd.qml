@@ -33,7 +33,22 @@ PanelWindow {
             visible: !osd.profileMode
             anchors.fill: parent
             anchors.margins: 12
-            Label { text: osd.controls.osdLabel; color: osd.theme.text }
+            RowLayout {
+                Layout.fillWidth: true
+                Label {
+                    Layout.fillWidth: true
+                    text: osd.controls.osdLabel
+                    color: osd.theme.text
+                    font.family: osd.theme.font
+                    elide: Text.ElideRight
+                }
+                Label {
+                    text: Math.round(osd.controls.osdLevel * 100) + "%"
+                    color: osd.theme.text
+                    font.family: osd.theme.font
+                    font.weight: Font.DemiBold
+                }
+            }
             ProgressBar { Layout.fillWidth: true; value: osd.controls.osdLevel }
         }
 

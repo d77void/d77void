@@ -8,12 +8,12 @@ pmMac is a desktop shell for Niri and Quickshell. It adds a live dock, a top bar
 
 | Feature | What to install |
 | --- | --- |
-| Desktop shell and application launcher | Niri 26.04 or later, Quickshell 0.3.2 or later with its Wayland and Qt Quick modules, Python 3, and GTK's `gtk-launch` |
+| Desktop shell and application launcher | Niri 26.04 or later, Quickshell 0.3.2 or later with its Wayland, Networking and Qt Quick modules, Python 3, and GTK's `gtk-launch` |
 | Installer and icons | GNU Make, Bash, curl, tar, coreutils, and `gtk-update-icon-cache` |
 | Niri keyboard shortcuts | [qsd77](https://github.com/dani-77/qsd77) on the Niri session's `PATH` |
 | Wallpaper and matching colors | `awww` and `awww-daemon`, and Matugen 4 |
-| Control center and power actions | PipeWire for audio, UPower for battery, NetworkManager and `nmtui` for network status and settings, power-profiles-daemon for power modes, `brightnessctl` for brightness, and elogind or systemd-logind for session power actions |
-| Network settings and terminal applications | A terminal emulator: `$TERMINAL`, or the first of Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm |
+| Control center and power actions | PipeWire for audio, UPower for battery, NetworkManager for the graphical network panel, power-profiles-daemon for power modes, `brightnessctl` for brightness, and elogind or systemd-logind for session power actions |
+| Terminal applications | A terminal emulator: `$TERMINAL`, or the first of Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm |
 | Lock screen | Quickshell with PAM support and the `/etc/pam.d/amorphis` policy from [Amorphis](https://github.com/dani-77/amorphis), installed for your distribution |
 
 ### 2. Install pmMac and the icons
@@ -60,13 +60,15 @@ qsd77 run -c pmmac
 | Mod + Alt + L | Lock the session |
 | Volume and brightness keys | Adjust the setting and show the indicator |
 
-In the Control Center, click **Network** to open `nmtui` in a terminal. The **Battery** tile shows the time left, or the time to a full charge while charging, and the current power mode; click it to switch between the power-saver, balanced and performance modes, shown in an indicator.
+In the Control Center, click **Network** to find Wi-Fi networks, connect, enter a password, disconnect, or check an Ethernet connection. Install `nm-connection-editor` to expose **Advanced settings** for profiles, hidden networks, and enterprise Wi-Fi. The **Battery** tile shows the time left, or the time to a full charge while charging, and the current power mode; click it to switch between the power-saver, balanced and performance modes, shown in an indicator.
 
-The launcher and the dock open terminal applications (`Terminal=true` desktop entries) in a terminal as well. Set `TERMINAL` to a terminal executable name or absolute path in the Niri session environment to choose it; otherwise pmMac uses the first one installed from Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm. The `nmtui` window has the app ID `nmtui-float`, so a Niri window rule can make it float.
+The launcher and the dock open terminal applications (`Terminal=true` desktop entries) in a terminal as well. Set `TERMINAL` to a terminal executable name or absolute path in the Niri session environment to choose it; otherwise pmMac uses the first one installed from Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm.
 
 Click a dock icon to launch or focus the app. Click the focused app again to hide its windows, and click once more to restore them. Hidden windows appear in the **pmMac Hidden** workspace in Niri's overview. Right-click a dock icon to select an individual window or pin or unpin the app.
 
 The wallpaper picker starts in `~/Wallpaper`. Set `PMMAC_WALLPAPER_DIR` or edit the installed `Settings.qml` to change it. The same file controls default pins, output selection, panel opacity, blur, and dock behavior. Reinstalling preserves your existing copy of `Settings.qml`. Pins and wallpaper choices are saved in `${XDG_STATE_HOME:-$HOME/.local/state}/pmmac`.
+
+The bar shows the battery percentage and charging status. Click the date or time to switch between 24-hour and 12-hour display with AM/PM. pmMac remembers your choice. Volume and brightness indicators show the level as a percentage.
 
 The interface includes European Portuguese and English. Dates and times follow the session locale. Set `PMMAC_LOCALE` before starting the shell to override both.
 

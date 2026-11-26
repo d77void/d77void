@@ -77,6 +77,7 @@ ShellRoot {
         active: !!shell.screen
         sourceComponent: TopBar {
             screen: shell.screen
+            controls: controlService
             ui: shell
             theme: shellTheme
             applicationName: shell.applicationName
@@ -100,13 +101,13 @@ ShellRoot {
             corner: shell.popup !== "launcher" && shell.popup !== "wallpaper"
             onLeft: shell.popup === "session"
             implicitWidth: Math.max(1, Math.min(shell.screen?.width - 28 || 260,
-                shell.popup === "wallpaper" ? 706 : shell.popup === "launcher" ? 540 : 326))
+                shell.popup === "wallpaper" ? 706 : shell.popup === "launcher" ? 540 : shell.popup === "network" ? 390 : 326))
             implicitHeight: {
-                const heights = { launcher: 356, dashboard: 326, session: 290, wallpaper: 496 }
+                const heights = { launcher: 356, dashboard: 326, session: 290, wallpaper: 496, network: 475 }
                 return Math.max(1, Math.min(shell.screen?.height - 60 || 200, heights[shell.popup] ?? 200))
             }
             body: {
-                const panels = { launcher, dashboard, session, wallpaper }
+                const panels = { launcher, dashboard, session, wallpaper, network }
                 return panels[shell.popup] ?? null
             }
             onDismissed: shell.popup = ""
@@ -121,6 +122,7 @@ ShellRoot {
             onLaunched: shell.popup = ""
         }
     }
+    Component { id: network; NetworkPanel { ui: shell; theme: shellTheme } }
     Component { id: dashboard; ControlPanel { controls: controlService; ui: shell; theme: shellTheme } }
     Component { id: session; SessionPanel { ui: shell; theme: shellTheme } }
     Component {

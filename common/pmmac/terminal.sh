@@ -5,8 +5,7 @@
 #
 # Uses $TERMINAL (a command name or absolute path) when it is set and found,
 # otherwise the first available terminal from the list below. --class sets the
-# window's app-id/class, so a compositor rule can match it (d77void floats
-# "nmtui-float").
+# window's app-id/class, so a compositor rule can match it.
 set -eu
 
 class=

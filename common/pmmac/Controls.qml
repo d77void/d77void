@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Networking
 import Quickshell.Services.Pipewire
 import Quickshell.Services.UPower
 
@@ -9,6 +10,8 @@ Scope {
     readonly property var audio: Pipewire.defaultAudioSink?.audio ?? null
     readonly property var battery: UPower.displayDevice
     readonly property bool hasBattery: battery?.isLaptopBattery ?? false
+    readonly property int batteryPercent: hasBattery
+        ? Math.round(Math.min(1, Math.max(0, battery.percentage)) * 100) : 0
     readonly property bool charging: hasBattery && battery.state === UPowerDeviceState.Charging
     readonly property string batteryStatus: {
         if (!hasBattery)
@@ -27,7 +30,8 @@ Scope {
         : [PowerProfile.PowerSaver, PowerProfile.Balanced]
     readonly property int powerProfile: PowerProfiles.profile
     property int brightness: -1
-    property string network: "Unavailable"
+    readonly property string network: Networking.backend !== NetworkBackendType.NetworkManager
+        ? "Unavailable" : Networking.devices.values.some(device => device.connected) ? "connected" : "disconnected"
     property string osdLabel: ""
     property real osdLevel: 0
     // -1 for a level OSD (volume, brightness); otherwise the index of the
@@ -66,12 +70,6 @@ Scope {
         osdTimer.restart()
     }
 
-    // nmtui in whichever terminal is installed (see terminal.sh); d77void's
-    // niri config floats the "nmtui-float" window.
-    function openNetworkSettings(): void {
-        Quickshell.execDetached(["sh", Quickshell.shellPath("terminal.sh"), "--class", "nmtui-float", "nmtui"])
-    }
-
     function setVolume(volume): void {
         if (audio) {
             audio.volume = Math.min(1, Math.max(0, volume))
@@ -89,7 +87,6 @@ Scope {
     function refresh(): void {
         if (!briWrite.running)
             briRead.running = true
-        networkRead.running = true
     }
 
     function setBrightness(level): void {
@@ -127,13 +124,4 @@ Scope {
         }
     }
 
-    Process {
-        id: networkRead
-        command: ["nmcli", "-t", "-f", "STATE", "general", "status"]
-        environment: ({ LC_ALL: "C" })
-        stdout: StdioCollector {
-            onStreamFinished: controls.network = text.trim() || "Unavailable"
-        }
-        onExited: code => { if (code !== 0) controls.network = "Unavailable" }
-    }
 }

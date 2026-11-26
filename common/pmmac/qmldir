@@ -5,6 +5,7 @@ Dock 1.0 Dock.qml
 GlassPane 1.0 GlassPane.qml
 LauncherPanel 1.0 LauncherPanel.qml
 LockSurface 1.0 LockSurface.qml
+NetworkPanel 1.0 NetworkPanel.qml
 Niri 1.0 Niri.qml
 Osd 1.0 Osd.qml
 PopupSurface 1.0 PopupSurface.qml

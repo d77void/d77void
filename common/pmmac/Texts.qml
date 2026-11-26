@@ -18,6 +18,27 @@ QtObject {
     readonly property var portuguese: ({
         "%1 remaining": "%1 restantes",
         "%1 until full": "%1 até à carga completa",
+        "Advanced settings": "Definições avançadas",
+        "Back": "Voltar",
+        "Cable unplugged": "Cabo desligado",
+        "Cancel": "Cancelar",
+        "Check the Wi-Fi password and try again.": "Confirma a palavra-passe da rede Wi-Fi e tenta novamente.",
+        "Connect": "Ligar",
+        "Could not connect. Check the network and try again.": "Não foi possível ligar. Verifica a rede e tenta novamente.",
+        "Could not disconnect from the network.": "Não foi possível desligar a ligação à rede.",
+        "Disconnect": "Desligar",
+        "Looking for Wi-Fi networks…": "A procurar redes Wi-Fi…",
+        "NetworkManager unavailable": "NetworkManager indisponível",
+        "No Wi-Fi device": "Nenhum adaptador Wi-Fi",
+        "No Wi-Fi networks found": "Nenhuma rede Wi-Fi encontrada",
+        "Open network": "Rede aberta",
+        "Please wait…": "Aguarda…",
+        "Saved": "Guardada",
+        "Secured": "Protegida",
+        "The connection took too long. Try again.": "A ligação demorou demasiado tempo. Tenta novamente.",
+        "This network needs an advanced connection profile.": "Esta rede precisa de um perfil de ligação avançado.",
+        "Wi-Fi is blocked by a hardware switch": "O Wi-Fi está bloqueado pelo interruptor do equipamento",
+        "Wi-Fi is off": "Wi-Fi desligado",
         "Application": "Aplicação",
         "Authentication could not be completed.": "Não foi possível concluir a autenticação.",
         "Authentication is unavailable.": "A autenticação está indisponível.",
@@ -27,6 +48,7 @@ QtObject {
         "Charging": "A carregar",
         "Checking password…": "A verificar a palavra-passe…",
         "Click to configure": "Clicar para configurar",
+        "Click to switch time format": "Clica para alternar o formato da hora",
         "Color intensity": "Intensidade da cor",
         "Confirm restart": "Confirmar reinício",
         "Confirm shutdown": "Confirmar encerramento",
@@ -107,7 +129,11 @@ QtObject {
         return messageLanguage === "pt" ? portuguese[message] ?? message : message
     }
 
-    function clock(value: date): string {
+    function clock(value: date, mode: string): string {
+        if (mode === "12")
+            return Qt.locale("C").toString(value, "h:mm AP")
+        if (mode === "24")
+            return dateLocale.toString(value, "HH:mm")
         return dateLocale.toString(value, dateLocale.timeFormat(Locale.ShortFormat))
     }
 

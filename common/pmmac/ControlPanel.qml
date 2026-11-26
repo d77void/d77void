@@ -26,14 +26,11 @@ ColumnLayout {
             caption: Texts.tr("Network")
             detail: Texts.tr(panel.controls.network)
             note: Texts.tr("Click to configure")
-            onClicked: {
-                panel.controls.openNetworkSettings()
-                panel.ui.setPopup("")
-            }
+            onClicked: panel.ui.setPopup("network")
         }
         StatusTile {
             visible: panel.controls.hasBattery
-            caption: Texts.tr("Battery") + " · " + Math.round((panel.controls.battery?.percentage ?? 0) * 100) + "%"
+            caption: Texts.tr("Battery") + " · " + panel.controls.batteryPercent + "%"
             detail: panel.controls.batteryStatus
             note: panel.controls.profileName(panel.controls.powerProfile)
             onClicked: panel.controls.cyclePowerProfile()

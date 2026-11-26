@@ -678,7 +678,7 @@ build_variant() {
 			COMMON=yes
 			GREETD=yes
 			PMMAC=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS ${D77_CORE/ brave-bin / $PLASMA_BROWSER } $CALAMARES alacritty amorphis awww gnome-keyring grim gtk+3 gtk-update-icon-cache ImageMagick mate-polkit matugen niri-d77 niri-settings pavucontrol python3 qsd77 quickshell qt5-wayland qt6-multimedia qt6-wayland swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS ${D77_CORE/ brave-bin / $PLASMA_BROWSER } $CALAMARES alacritty amorphis awww gnome-keyring grim gtk+3 gtk-update-icon-cache ImageMagick mate-polkit matugen network-manager-applet niri-d77 niri-settings pavucontrol python3 qsd77 quickshell qt5-wayland qt6-multimedia qt6-wayland swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		openbox)

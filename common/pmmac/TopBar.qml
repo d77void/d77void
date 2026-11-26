@@ -3,14 +3,19 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 
 PanelWindow {
     id: bar
 
     required property var ui
+    required property var controls
     required property var theme
     required property string applicationName
+    readonly property string clockMode: clockFile.text().trim()
+    readonly property bool twelveHourClock: clockMode === "12"
+        || (clockMode !== "24" && /AP|ap/.test(Texts.dateLocale.timeFormat(Locale.ShortFormat)))
 
     anchors { top: true; left: true; right: true }
     implicitHeight: 39
@@ -31,6 +36,15 @@ PanelWindow {
     }
 
     SystemClock { id: clock; precision: SystemClock.Minutes }
+
+    FileView {
+        id: clockFile
+        path: Quickshell.statePath("clock-format")
+        blockLoading: true
+        blockWrites: true
+        printErrors: false
+        onSaveFailed: error => console.warn("Could not save clock format:", error)
+    }
 
     GlassPane {
         id: appIsland
@@ -112,16 +126,84 @@ PanelWindow {
             }
             BarButton { text: Texts.tr("Search"); onClicked: bar.ui.togglePopup("launcher") }
             BarButton { text: Texts.tr("Controls"); onClicked: bar.ui.togglePopup("dashboard") }
-            Label {
-                leftPadding: 6
-                rightPadding: 7
-                text: bar.width > 680
-                    ? Texts.day(clock.date, true) + "  " + Texts.clock(clock.date)
-                    : Texts.clock(clock.date)
-                color: bar.theme.text
-                font.family: bar.theme.font
-                font.pixelSize: 13
-                font.weight: Font.Medium
+            RowLayout {
+                visible: bar.controls.hasBattery
+                spacing: 4
+                Layout.leftMargin: 4
+                Layout.rightMargin: 2
+                Accessible.role: Accessible.StaticText
+                Accessible.name: Texts.tr("Battery") + ", " + bar.controls.batteryPercent
+                    + "%, " + bar.controls.batteryStatus
+
+                Item {
+                    Layout.preferredWidth: 22
+                    Layout.preferredHeight: 12
+
+                    Rectangle {
+                        id: batteryCase
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 19
+                        height: 11
+                        radius: 3
+                        color: "transparent"
+                        border.color: bar.theme.muted
+
+                        Rectangle {
+                            x: 2
+                            anchors.verticalCenter: parent.verticalCenter
+                            height: 7
+                            width: Math.round((batteryCase.width - 4) * bar.controls.batteryPercent / 100)
+                            radius: 1
+                            color: bar.controls.charging ? bar.theme.accent : bar.theme.text
+                            opacity: bar.controls.charging ? 0.4 : 1
+                        }
+
+                        Shape {
+                            visible: bar.controls.charging
+                            anchors.centerIn: parent
+                            width: 7
+                            height: 10
+
+                            ShapePath {
+                                fillColor: bar.theme.text
+                                strokeColor: "transparent"
+                                startX: 4.2
+                                startY: 0
+                                PathLine { x: 0.7; y: 5.7 }
+                                PathLine { x: 3.1; y: 5.7 }
+                                PathLine { x: 2.7; y: 10 }
+                                PathLine { x: 6.3; y: 4.1 }
+                                PathLine { x: 3.9; y: 4.1 }
+                                PathLine { x: 4.2; y: 0 }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        anchors.left: batteryCase.right
+                        anchors.leftMargin: 1
+                        anchors.verticalCenter: batteryCase.verticalCenter
+                        width: 2
+                        height: 5
+                        radius: 1
+                        color: bar.theme.muted
+                    }
+                }
+
+                Label {
+                    text: bar.controls.batteryPercent + "%"
+                    color: bar.theme.text
+                    font.family: bar.theme.font
+                    font.pixelSize: 12
+                }
+            }
+
+            BarButton {
+                id: clockButton
+                readonly property string time: Texts.clock(clock.date, bar.clockMode)
+                text: bar.width > 680 ? Texts.day(clock.date, true) + "  " + time : time
+                Accessible.name: text + ". " + Texts.tr("Click to switch time format")
+                onClicked: clockFile.setText(bar.twelveHourClock ? "24" : "12")
             }
         }
     }

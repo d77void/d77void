@@ -51,7 +51,7 @@ Rectangle {
 
         Label {
             Layout.alignment: Qt.AlignHCenter
-            text: Texts.clock(clock.date)
+            text: Texts.clock(clock.date, "")
             color: surface.theme.text
             font.family: surface.theme.font
             font.pixelSize: Math.max(56, Math.min(120, surface.height * 0.16))
