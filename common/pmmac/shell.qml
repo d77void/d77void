@@ -102,7 +102,7 @@ ShellRoot {
             implicitWidth: Math.max(1, Math.min(shell.screen?.width - 28 || 260,
                 shell.popup === "wallpaper" ? 706 : shell.popup === "launcher" ? 540 : 326))
             implicitHeight: {
-                const heights = { launcher: 356, dashboard: 310, session: 290, wallpaper: 496 }
+                const heights = { launcher: 356, dashboard: 326, session: 290, wallpaper: 496 }
                 return Math.max(1, Math.min(shell.screen?.height - 60 || 200, heights[shell.popup] ?? 200))
             }
             body: {
@@ -171,5 +171,6 @@ ShellRoot {
         function volumeMuteToggle(): void { controlService.mute() }
         function brightnessUp(): void { controlService.setBrightness(controlService.brightness + 5) }
         function brightnessDown(): void { controlService.setBrightness(controlService.brightness - 5) }
+        function powerProfileCycle(): void { controlService.cyclePowerProfile() }
     }
 }

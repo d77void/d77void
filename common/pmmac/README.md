@@ -12,7 +12,8 @@ pmMac is a desktop shell for Niri and Quickshell. It adds a live dock, a top bar
 | Installer and icons | GNU Make, Bash, curl, tar, coreutils, and `gtk-update-icon-cache` |
 | Niri keyboard shortcuts | [qsd77](https://github.com/dani-77/qsd77) on the Niri session's `PATH` |
 | Wallpaper and matching colors | `awww` and `awww-daemon`, and Matugen 4 |
-| Control center and power actions | PipeWire for audio, UPower for battery, NetworkManager for network status, `brightnessctl` for brightness, and elogind or systemd-logind for session power actions |
+| Control center and power actions | PipeWire for audio, UPower for battery, NetworkManager and `nmtui` for network status and settings, power-profiles-daemon for power modes, `brightnessctl` for brightness, and elogind or systemd-logind for session power actions |
+| Network settings and terminal applications | A terminal emulator: `$TERMINAL`, or the first of Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm |
 | Lock screen | Quickshell with PAM support and the `/etc/pam.d/amorphis` policy from [Amorphis](https://github.com/dani-77/amorphis), installed for your distribution |
 
 ### 2. Install pmMac and the icons
@@ -58,6 +59,10 @@ qsd77 run -c pmmac
 | Mod + Ctrl + O | Open Niri's overview |
 | Mod + Alt + L | Lock the session |
 | Volume and brightness keys | Adjust the setting and show the indicator |
+
+In the Control Center, click **Network** to open `nmtui` in a terminal. The **Battery** tile shows the time left, or the time to a full charge while charging, and the current power mode; click it to switch between the power-saver, balanced and performance modes, shown in an indicator.
+
+The launcher and the dock open terminal applications (`Terminal=true` desktop entries) in a terminal as well. Set `TERMINAL` to a terminal executable name or absolute path in the Niri session environment to choose it; otherwise pmMac uses the first one installed from Alacritty, kitty, foot, WezTerm, Ghostty, st and xterm. The `nmtui` window has the app ID `nmtui-float`, so a Niri window rule can make it float.
 
 Click a dock icon to launch or focus the app. Click the focused app again to hide its windows, and click once more to restore them. Hidden windows appear in the **pmMac Hidden** workspace in Niri's overview. Right-click a dock icon to select an individual window or pin or unpin the app.
 

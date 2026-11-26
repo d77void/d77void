@@ -82,8 +82,18 @@ Scope {
     }
 
     function launch(entry): void {
-        if (entry)
+        if (!entry)
+            return
+        // gtk-launch can't pick a terminal for Terminal=true entries: run
+        // those through terminal.sh, which finds whichever one is installed.
+        if (entry.runInTerminal && entry.command.length > 0) {
+            Quickshell.execDetached({
+                command: ["sh", Quickshell.shellPath("terminal.sh")].concat(entry.command),
+                workingDirectory: entry.workingDirectory || Quickshell.env("HOME")
+            })
+        } else {
             Quickshell.execDetached(["gtk-launch", entry.id + ".desktop"])
+        }
     }
 
     function icon(entry): string {

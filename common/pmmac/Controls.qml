@@ -8,10 +8,31 @@ Scope {
     id: controls
     readonly property var audio: Pipewire.defaultAudioSink?.audio ?? null
     readonly property var battery: UPower.displayDevice
+    readonly property bool hasBattery: battery?.isLaptopBattery ?? false
+    readonly property bool charging: hasBattery && battery.state === UPowerDeviceState.Charging
+    readonly property string batteryStatus: {
+        if (!hasBattery)
+            return ""
+        if (charging)
+            return battery.timeToFull > 0 ? Texts.tr("%1 until full").arg(duration(battery.timeToFull)) : Texts.tr("Charging")
+        if (battery.state === UPowerDeviceState.Discharging)
+            return battery.timeToEmpty > 0 ? Texts.tr("%1 remaining").arg(duration(battery.timeToEmpty)) : Texts.tr("On battery")
+        if (battery.state === UPowerDeviceState.FullyCharged)
+            return Texts.tr("Fully charged")
+        return Texts.tr("Plugged in")
+    }
+    // Power profiles in the order the battery tile cycles through them.
+    readonly property var powerProfiles: PowerProfiles.hasPerformanceProfile
+        ? [PowerProfile.PowerSaver, PowerProfile.Balanced, PowerProfile.Performance]
+        : [PowerProfile.PowerSaver, PowerProfile.Balanced]
+    readonly property int powerProfile: PowerProfiles.profile
     property int brightness: -1
     property string network: "Unavailable"
     property string osdLabel: ""
     property real osdLevel: 0
+    // -1 for a level OSD (volume, brightness); otherwise the index of the
+    // power profile shown, in powerProfiles.
+    property int osdProfile: -1
     readonly property bool osdVisible: osdTimer.running
 
     PwObjectTracker { objects: [Pipewire.defaultAudioSink].filter(Boolean) }
@@ -19,7 +40,36 @@ Scope {
     function show(label, level): void {
         osdLabel = label
         osdLevel = level
+        osdProfile = -1
         osdTimer.restart()
+    }
+
+    function duration(seconds: real): string {
+        const total = Math.round(seconds / 60)
+        const hours = Math.floor(total / 60)
+        return hours > 0 ? hours + " h " + total % 60 + " min" : total + " min"
+    }
+
+    function profileName(profile: int): string {
+        switch (profile) {
+        case PowerProfile.PowerSaver: return Texts.tr("Power saver")
+        case PowerProfile.Performance: return Texts.tr("Performance")
+        default: return Texts.tr("Balanced")
+        }
+    }
+
+    function cyclePowerProfile(): void {
+        const next = powerProfiles[(powerProfiles.indexOf(powerProfile) + 1) % powerProfiles.length]
+        PowerProfiles.profile = next
+        osdLabel = profileName(next)
+        osdProfile = powerProfiles.indexOf(next)
+        osdTimer.restart()
+    }
+
+    // nmtui in whichever terminal is installed (see terminal.sh); d77void's
+    // niri config floats the "nmtui-float" window.
+    function openNetworkSettings(): void {
+        Quickshell.execDetached(["sh", Quickshell.shellPath("terminal.sh"), "--class", "nmtui-float", "nmtui"])
     }
 
     function setVolume(volume): void {

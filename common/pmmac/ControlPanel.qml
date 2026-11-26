@@ -25,11 +25,18 @@ ColumnLayout {
         StatusTile {
             caption: Texts.tr("Network")
             detail: Texts.tr(panel.controls.network)
+            note: Texts.tr("Click to configure")
+            onClicked: {
+                panel.controls.openNetworkSettings()
+                panel.ui.setPopup("")
+            }
         }
         StatusTile {
-            visible: panel.controls.battery?.isLaptopBattery ?? false
-            caption: Texts.tr("Battery")
-            detail: Math.round((panel.controls.battery?.percentage ?? 0) * 100) + "%"
+            visible: panel.controls.hasBattery
+            caption: Texts.tr("Battery") + " · " + Math.round((panel.controls.battery?.percentage ?? 0) * 100) + "%"
+            detail: panel.controls.batteryStatus
+            note: panel.controls.profileName(panel.controls.powerProfile)
+            onClicked: panel.controls.cyclePowerProfile()
         }
     }
 
@@ -99,12 +106,24 @@ ColumnLayout {
         id: status
         required property string caption
         required property string detail
+        property string note: ""
+        signal clicked()
         Layout.fillWidth: true
         Layout.minimumWidth: 0
-        implicitHeight: 52
+        implicitHeight: note ? 68 : 52
         radius: 16
-        color: panel.theme.raised
-        border.color: "#12ffffff"
+        color: tileMouse.containsMouse ? "#40e2eaff" : panel.theme.raised
+        border.color: tileMouse.activeFocus ? panel.theme.accent : "#12ffffff"
+        Accessible.role: Accessible.Button
+        Accessible.name: caption + ", " + detail
+
+        MouseArea {
+            id: tileMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: status.clicked()
+        }
 
         ColumnLayout {
             anchors.fill: parent
@@ -120,6 +139,14 @@ ColumnLayout {
                 Layout.fillWidth: true
                 text: status.detail
                 color: panel.theme.muted
+                elide: Text.ElideRight
+            }
+            PanelLabel {
+                visible: status.note !== ""
+                Layout.fillWidth: true
+                text: status.note
+                color: panel.theme.accent
+                font.pixelSize: 12
                 elide: Text.ElideRight
             }
         }

@@ -9,7 +9,7 @@ PMMAC_CONFIG_DIR := $(DESTDIR)$(CONFIG_HOME)/quickshell/pmmac
 PMMAC_COMMAND := $(DESTDIR)$(BINDIR)/pmmac
 PMMAC_ICON_DIR := $(DESTDIR)$(DATA_HOME)/icons/WhiteSur-pmMac
 SHELL_FILES := $(filter-out Settings.qml,$(wildcard *.qml)) qmldir matugen.toml \
-	wallpaper.py window-state.py niri-pmmac.kdl LICENSE
+	wallpaper.py window-state.py terminal.sh niri-pmmac.kdl LICENSE
 
 WHITESUR_REV := 73d8040da51a9ed74e47c7366e7e9ff437601a5c
 WHITESUR_URL := https://codeload.github.com/vinceliuice/WhiteSur-icon-theme/tar.gz/$(WHITESUR_REV)
