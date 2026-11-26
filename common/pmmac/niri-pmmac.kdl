@@ -1,0 +1,39 @@
+// Include this after shell-specific key bindings when using pmMac at login.
+spawn-at-startup "pmmac" "run"
+
+binds {
+    Mod+Ctrl+Space repeat=false hotkey-overlay-title="pmMac Search" {
+        spawn "qsd77" "launcher" "-c" "pmmac";
+    }
+    Mod+Ctrl+Shift+C repeat=false hotkey-overlay-title="pmMac Control Center" {
+        spawn "qsd77" "dashboard" "-c" "pmmac";
+    }
+    Mod+Ctrl+W repeat=false hotkey-overlay-title="pmMac Wallpaper" {
+        spawn "qsd77" "wallpaper" "-c" "pmmac";
+    }
+    Mod+Ctrl+S repeat=false hotkey-overlay-title="pmMac Session Menu" {
+        spawn "qsd77" "session" "-c" "pmmac";
+    }
+    Mod+Alt+L repeat=false hotkey-overlay-title="pmMac Lock Screen" {
+        spawn "qsd77" "locker" "-c" "pmmac";
+    }
+    Mod+Ctrl+O repeat=false hotkey-overlay-title="Niri Overview" {
+        spawn "qsd77" "ipc" "call" "overview" "toggle" "-c" "pmmac";
+    }
+
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "qsd77" "ipc" "call" "osd" "volumeUp" "-c" "pmmac";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "qsd77" "ipc" "call" "osd" "volumeDown" "-c" "pmmac";
+    }
+    XF86AudioMute allow-when-locked=true repeat=false {
+        spawn "qsd77" "ipc" "call" "osd" "volumeMuteToggle" "-c" "pmmac";
+    }
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "qsd77" "ipc" "call" "osd" "brightnessUp" "-c" "pmmac";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "qsd77" "ipc" "call" "osd" "brightnessDown" "-c" "pmmac";
+    }
+}

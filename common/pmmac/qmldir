@@ -1,0 +1,17 @@
+Applications 1.0 Applications.qml
+ControlPanel 1.0 ControlPanel.qml
+Controls 1.0 Controls.qml
+Dock 1.0 Dock.qml
+GlassPane 1.0 GlassPane.qml
+LauncherPanel 1.0 LauncherPanel.qml
+LockSurface 1.0 LockSurface.qml
+Niri 1.0 Niri.qml
+Osd 1.0 Osd.qml
+PopupSurface 1.0 PopupSurface.qml
+SessionPanel 1.0 SessionPanel.qml
+Settings 1.0 Settings.qml
+Theme 1.0 Theme.qml
+TopBar 1.0 TopBar.qml
+Wallpaper 1.0 Wallpaper.qml
+WallpaperPanel 1.0 WallpaperPanel.qml
+singleton Texts 1.0 Texts.qml
