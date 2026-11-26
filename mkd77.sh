@@ -96,6 +96,8 @@ if [ -z "${D77_BUILD_NS:-}" ]; then
 fi
 
 # Architecture-dependent globals (set once, used by include_* functions)
+# PLASMA_BROWSER is LibreWolf (Firefox on musl, which has no LibreWolf): the
+# browser of the plasma and wmd77 variants.
 if [ -n "$MUSL" ]; then
 	ARCH_PATH="x86_64-musl"
 	BROWSER="firefox"
@@ -763,7 +765,7 @@ build_variant() {
 			WMD77=yes
 			X11=yes
 			SDDM=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils amorphis arc-theme atg bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-inter fresh-editor gettext git d77run htop inxi joshuto kantele kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme strata pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects qsd77 quickshell qutebrowser smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber wmd77 xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi alsa-pipewire alsa-tools alsa-utils amorphis arc-theme atg bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-inter fresh-editor gettext git d77run htop inxi joshuto kantele kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme strata pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects qsd77 quickshell $PLASMA_BROWSER smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber wmd77 xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		xfce)
