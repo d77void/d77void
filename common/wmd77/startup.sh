@@ -1,7 +1,12 @@
 #!/bin/bash
 # d77void: wmd77 session startup with the ATG bar.
 
-synclient TapButton1=1 &
+# Tap to click with either touchpad driver: synaptics (synclient) or libinput.
+synclient TapButton1=1 2>/dev/null ||
+	for id in $(xinput list --id-only 2>/dev/null); do
+		xinput list-props "$id" 2>/dev/null | grep -q "libinput Tapping Enabled (" &&
+			xinput set-prop "$id" "libinput Tapping Enabled" 1
+	done
 dunst &
 udiskie -a &
 xcompmgr -c -f -n &
