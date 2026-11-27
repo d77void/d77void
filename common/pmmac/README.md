@@ -90,6 +90,6 @@ For an offline install, supply the exact archive pinned in the [Makefile](Makefi
 
 ## Credits
 
-- [quickshell-d77](https://github.com/dani-77/quickshell-d77/tree/dc4edacd5e5c975e698f2729da5454dbb87b39fb) informed the IPC and wallpaper integration.
+- [quickshell-d77](https://github.com/dani-77/quickshell-d77/tree/dc4edacd5e5c975e698f2729da5454dbb87b39fb) informed the IPC and wallpaper integration (quickshell-d77 is now archived; [Utumno](https://github.com/dani-77/utumno) superseded it).
 - [Utumno](https://github.com/dani-77/utumno/tree/a8994a68914b474559d9f4d75317ba5890031206) provided the basis for the per-output lock surfaces and PAM conversation.
 - [WhiteSur Icon Theme](https://github.com/vinceliuice/WhiteSur-icon-theme) by vinceliuice and contributors provides the icons.
