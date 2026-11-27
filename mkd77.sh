@@ -706,7 +706,7 @@ build_variant() {
 		qsd77)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils libinput-hypr network-manager-applet nwg-look nwg-launchers ollama pavucontrol qsd77 qt5-wayland qt6-wayland quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils libinput-hypr network-manager-applet nwg-look nwg-launchers ollama pavucontrol qsd77 qt5-wayland qt6-wayland utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		qtile)
