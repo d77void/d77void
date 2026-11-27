@@ -318,6 +318,23 @@ include_niri() {
 	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
 }
 
+include_pmmac() {
+	# pmMac's own installer: the shell in /usr/share/quickshell/pmmac, the
+	# pmmac command in /usr/bin and the pinned, checksummed WhiteSur-pmMac
+	# icon theme (downloaded at build time) in /usr/share/icons.
+	make -C ./common/pmmac install DESTDIR="$INCLUDEDIR"
+	# Default wallpaper: the skel's ~/.local/state/pmmac/wallpaper.json points
+	# at this copy, so the first login already has a wallpaper and palette.
+	# The picker's wallpapers come with the skel (~/Wallpaper).
+	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
+	cp ./pmmac/skel/Wallpaper/wall_macos2.jpg "$INCLUDEDIR"/usr/share/backgrounds/d77void-pmmac.jpg
+	# The dock pins LibreWolf, which musl builds don't have.
+	if [ -n "$MUSL" ]; then
+		sed -i 's/librewolf\.desktop/firefox.desktop/g; s/"LibreWolf"/"firefox"/' \
+			"$INCLUDEDIR"/usr/share/quickshell/pmmac/Settings.qml
+	fi
+}
+
 include_plasma() {
 	_include_base
 	include_sddm
@@ -439,6 +456,7 @@ build_variant() {
 			X11=
 			WAY=
 			NIRI=
+			PMMAC=
 			LXQT=
 			BOX=
 			PLYMOUTH=yes
@@ -656,6 +674,13 @@ build_variant() {
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty mate-polkit matugen niri-d77 niri-settings noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland swaybg swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
+		pmmac)
+			COMMON=yes
+			GREETD=yes
+			PMMAC=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS ${D77_CORE/ brave-bin / $PLASMA_BROWSER } $CALAMARES alacritty amorphis awww gnome-keyring grim gtk+3 gtk-update-icon-cache ImageMagick mate-polkit matugen network-manager-applet niri-d77 niri-settings pavucontrol python3 qsd77 quickshell qt5-wayland qt6-multimedia qt6-wayland swayidle swayimg upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
 		openbox)
 			COMMON=yes
 			BOX=yes
@@ -799,6 +824,7 @@ EOF
 	[ "$LXQT" = yes ]    && include_lxqt
 	[ "$NIRI" = yes ]    && include_niri
 	[ "$PLASMA" = yes ]  && include_plasma
+	[ "$PMMAC" = yes ]   && include_pmmac
 	[ "$PLYMOUTH" = yes ] && include_plymouth
 	[ "$POLY" = yes ]    && include_poly
 	[ "$RIVER" = yes ]   && include_river

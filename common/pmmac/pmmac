@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+
+# Match qsd77's configuration lookup for system-wide installs.
+export XDG_CONFIG_DIRS="/usr/share:${XDG_CONFIG_DIRS:-/etc/xdg}"
+
+case "${1:-run}" in
+    run)
+        [ "$#" -eq 0 ] || shift
+        exec qs --no-duplicate -c pmmac "$@"
+        ;;
+    launcher|dashboard|wallpaper|session|overview)
+        exec qs ipc -c pmmac call "$1" toggle
+        ;;
+    lock)
+        exec qs ipc -c pmmac call lockscreen lock
+        ;;
+    *)
+        printf '%s\n' 'Usage: pmmac [run|launcher|dashboard|wallpaper|session|overview|lock]' >&2
+        exit 2
+        ;;
+esac
