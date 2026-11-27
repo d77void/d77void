@@ -144,6 +144,7 @@ Rectangle {
                 contentItem: Label {
                     text: submitButton.text
                     color: submitButton.enabled ? surface.theme.text : surface.theme.muted
+                    font.family: surface.theme.font
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -167,6 +168,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             color: surface.theme.text
+            font.family: surface.theme.font
             text: surface.controller.busy ? Texts.tr("Checking password…") : surface.controller.message
             visible: text !== ""
             wrapMode: Text.WordWrap

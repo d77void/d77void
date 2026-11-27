@@ -161,15 +161,48 @@ ColumnLayout {
         }
 
         Switch {
+            id: wifiSwitch
             visible: panel.wifiDevices.length > 0
             enabled: Networking.wifiHardwareEnabled && !panel.pendingNetwork
             text: "Wi-Fi"
             checked: panel.wifiEnabled
+            spacing: 8
+            padding: 0
             onToggled: {
                 password.clear()
                 panel.passwordNetwork = null
                 panel.message = ""
                 Networking.wifiEnabled = checked
+            }
+
+            // macOS-style switch: accent track when on, the knob slides right.
+            indicator: Rectangle {
+                x: wifiSwitch.width - width - wifiSwitch.rightPadding
+                y: (wifiSwitch.height - height) / 2
+                implicitWidth: 40
+                implicitHeight: 24
+                radius: height / 2
+                color: wifiSwitch.checked ? panel.theme.accent : panel.theme.raised
+                border.color: wifiSwitch.visualFocus ? panel.theme.accent : "#24ffffff"
+                opacity: wifiSwitch.enabled ? 1 : 0.5
+                Behavior on color { ColorAnimation { duration: 140 } }
+
+                Rectangle {
+                    x: wifiSwitch.checked ? parent.width - width - 2 : 2
+                    y: 2
+                    width: parent.height - 4
+                    height: width
+                    radius: width / 2
+                    color: "#ffffff"
+                    Behavior on x { NumberAnimation { duration: 140; easing.type: Easing.OutCubic } }
+                }
+            }
+            contentItem: Label {
+                rightPadding: wifiSwitch.indicator.width + wifiSwitch.spacing
+                text: wifiSwitch.text
+                color: wifiSwitch.enabled ? panel.theme.text : panel.theme.muted
+                font.family: panel.theme.font
+                verticalAlignment: Text.AlignVCenter
             }
         }
     }
@@ -216,6 +249,7 @@ ColumnLayout {
                 id: password
                 Layout.fillWidth: true
                 placeholderText: Texts.tr("Enter password")
+                font.family: panel.theme.font
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 onAccepted: panel.submitPassword()

@@ -32,14 +32,16 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillWidth: true
-        Label { text: Texts.tr("Wallpaper"); color: panel.theme.text; font.pixelSize: 17; font.bold: true }
+        Label { text: Texts.tr("Wallpaper"); color: panel.theme.text; font.family: panel.theme.font; font.pixelSize: 17; font.bold: true }
         Item { Layout.fillWidth: true }
         Button {
             text: Texts.tr("Home")
+            font.family: panel.theme.font
             onClicked: files.folder = panel.url(panel.home)
         }
         Button {
             text: Texts.tr("Up")
+            font.family: panel.theme.font
             enabled: files.parentFolder.toString() !== ""
             onClicked: files.folder = files.parentFolder
         }
@@ -49,6 +51,7 @@ ColumnLayout {
         Layout.fillWidth: true
         text: decodeURIComponent(files.folder.toString().replace(/^file:\/\//, ""))
         color: panel.theme.muted
+        font.family: panel.theme.font
         elide: Text.ElideMiddle
     }
 
@@ -109,6 +112,7 @@ ColumnLayout {
                     text: tile.fileName + (tile.fileIsDir ? "/" : "")
                     elide: Text.ElideMiddle
                     color: panel.theme.text
+                    font.family: panel.theme.font
                 }
             }
         }
@@ -118,12 +122,13 @@ ColumnLayout {
             text: Texts.tr("No images in this folder")
             visible: files.status === FolderListModel.Ready && files.count === 0
             color: panel.theme.muted
+            font.family: panel.theme.font
         }
     }
 
     RowLayout {
         Layout.fillWidth: true
-        Label { text: Texts.tr("Color intensity"); color: panel.theme.text }
+        Label { text: Texts.tr("Color intensity"); color: panel.theme.text; font.family: panel.theme.font }
         Slider {
             Layout.fillWidth: true
             value: panel.wallpaper.state.mix ?? 0.5
@@ -136,6 +141,7 @@ ColumnLayout {
         visible: panel.wallpaper.busy || !!panel.wallpaper.error
         text: panel.wallpaper.busy ? Texts.tr("Updating wallpaper settings…") : panel.wallpaper.error
         color: panel.theme.accent
+        font.family: panel.theme.font
         elide: Text.ElideRight
     }
 }

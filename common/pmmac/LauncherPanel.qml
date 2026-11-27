@@ -60,6 +60,7 @@ ColumnLayout {
         visible: launcher.results.length === 0
         text: Texts.tr("No matching applications")
         color: launcher.theme.muted
+        font.family: launcher.theme.font
     }
 
     ListView {

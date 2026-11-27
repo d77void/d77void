@@ -11,6 +11,7 @@ ColumnLayout {
     Label {
         text: Texts.tr("Session")
         color: panel.theme.text
+        font.family: panel.theme.font
         font.pixelSize: 17
         font.bold: true
     }
@@ -46,6 +47,7 @@ ColumnLayout {
             contentItem: Label {
                 text: row.text
                 color: panel.theme.text
+                font.family: panel.theme.font
                 verticalAlignment: Text.AlignVCenter
             }
         }
